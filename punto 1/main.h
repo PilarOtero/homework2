@@ -31,4 +31,20 @@ class Time {
             period = p;
         }
     }
+    
+    //Metodos para obtener los valores
+    int define_hour(){ return hours; }
+    int define_minutes(){ return minutes; }
+    int define_seconds(){ return seconds; }
+    string define_period(){ return period; }
+
+    void show_12hs_time(){
+        cout << setfill('0') << setw(2) << hours << "h";
+        cout << setfill('0') << setw(2) << minutes << "m";
+        cout << setfill('0') << setw(2) << seconds << "s";
+        cout << period << endl;
+
+    }
+
+
 };
