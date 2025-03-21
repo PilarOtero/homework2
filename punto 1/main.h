@@ -43,7 +43,12 @@ class Time {
         cout << setfill('0') << setw(2) << minutes << "m";
         cout << setfill('0') << setw(2) << seconds << "s";
         cout << period << endl;
+    }
 
+    void show_24hs_time(){
+        int 24hours = continue;
+        cout << setfill('0') << setw(2) << minutes << "m";
+        cout << setfill('0') << setw(2) << seconds << "s";
     }
 
 
