@@ -32,11 +32,11 @@ class Time {
         }
     }
     
-    //Metodos para obtener los valores
-    int define_hour(){ return hours; }
-    int define_minutes(){ return minutes; }
-    int define_seconds(){ return seconds; }
-    string define_period(){ return period; }
+    //Metodos para obtener los valores por separado
+    int get_hour(){ return hours; }
+    int get_minutes(){ return minutes; }
+    int get_seconds(){ return seconds; }
+    string get_period(){ return period; }
 
     void show_12hs_time(){
         cout << setfill('0') << setw(2) << hours << "h";
