@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 class Time {
@@ -7,17 +8,37 @@ class Time {
         int minutes;
         int seconds;
         string period; //a.m o p.m;
-    
-        bool validate_time (int h, int m, int s, string period){
-            return (h % 12 >= 1 && h % 12 < 12) && (m % 60 >= 0 && m % 60 < 60) && (s % 60 >= 0 && s % 60 < 60) && (period == "a.m" || period == "p.m");}
 
     public:
+    bool validate_time (int h, int m, int s, string period){
+        try{
+            if (h < 0 || h > 12){
+                throw invalid_argument("Hora invalida. Ingrese nuevamente.");
+            }
+            if (m >= 60 || m < 0){
+                throw invalid_argument("Minutos invalidos. Ingrese nuevamente.");
+            }
+            if (s >= 60 || s < 0){
+                throw invalid_argument("Segundos invalidos. Ingrese nuevamente.");
+            }
+            if (period != "a.m" || period != "p.m"){
+                throw invalid_argument("Periodo invalidos. Ingrese nuevamente.");
+            }
+        }
+        catch(invalid_argument &e){
+            cout << e.what() << endl;
+            return false;
+        }
+
+        return true;
+    }
+    
     //Constructores para inicializar en los casos pedidos
 
     //Sin parametros
     Time (): hours(0), minutes(0), seconds(0), period("a.m") {}
     //Pasandole hora
-    Time(int h): Time() {if (validate_time(h,0, 0, "a.m")) hours = h; };
+    Time(int h): Time() {if (validate_time(h,0, 0, "a.m")) hours = h; }; // FALTA PEDIR EN CADA CASO QUE INGRESE DE VUELTA
     //Pasandole hora y minutos
     Time(int h, int m): Time() {if (validate_time(h,m, 0, "a.m")) hours = h; minutes = m; }
     //Pasandole hora, minutos y segundos
@@ -25,9 +46,9 @@ class Time {
     //Pasandole hora, minutos, segundos y periodo
     Time (int h, int  m, int s, string p) : Time(){
         if (validate_time(h,m,s,period)){
-            hours = h % 12;
-            minutes = m % 60;
-            seconds = s % 60;
+            hours = h;
+            minutes = m;
+            seconds = s;
             period = p;
         }
     }
@@ -39,6 +60,7 @@ class Time {
     string get_period(){ return period; }
 
     void show_12hs_time(){
+        //Imprimo con el formato HHh, MMm, SSs, a.m/p.m
         cout << setfill('0') << setw(2) << hours << "h";
         cout << setfill('0') << setw(2) << minutes << "m";
         cout << setfill('0') << setw(2) << seconds << "s";
@@ -46,7 +68,18 @@ class Time {
     }
 
     void show_24hs_time(){
-        int 24hours = continue;
+        //Defino una variable auxiliar ya que hours es un atributo de la clase
+        int hours24 = hours;
+
+        if (period == "p.m" && hours != 12){
+            hours24 += 12;
+        }
+        //Si la hora es 12, en reloj de 24hs pasa a ser 0
+        else if (period == "p.m" && hours == 12){
+            hours24 = 0; 
+        }
+        //Imprimo con el formato HHh,MMm, SSs
+        cout << setfill('0') << setw(2) << hours24 << "h";
         cout << setfill('0') << setw(2) << minutes << "m";
         cout << setfill('0') << setw(2) << seconds << "s";
     }
