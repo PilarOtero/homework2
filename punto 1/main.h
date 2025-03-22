@@ -17,31 +17,40 @@ class Time {
     public:
 
     bool validate_time (int h, int m, int s, string period){
-        while (true){
-            try{             
-                if (h < 0 || h > 12){
-                    throw invalid_argument("Hora invalida. Debe estar entre 1 y 12.");
-                }
-
-                if (m >= 60 || m < 0){
-                    throw invalid_argument("Minutos invalidos. .");
-                }
-            
-                if (s >= 60 || s < 0){
-                    throw invalid_argument("Segundos invalidos. Ingrese nuevamente.");
-                }
-
-                if (period != "a.m" && period != "p.m"){
-                    throw invalid_argument("Periodo invalido. Ingrese nuevamente.");
-                }
-            }
-        catch(const invalid_argument &e){
-            cout << e.what() << endl;
-            return false;
+        bool isValid = true;
+        string error;
+    
+        // Validar horas
+        if (h < 1 || h > 12) {
+            error += "Hora invalida. Debe estar entre 1 y 12.\n";
+            isValid = false;
         }
-    return true;
-    }  
-} 
+    
+        // Validar minutos
+        if (m < 0 || m >= 60) {
+            error += "Minutos invalidos. Deben estar entre 0 y 59.\n";
+            isValid = false;
+        }
+    
+        // Validar segundos
+        if (s < 0 || s >= 60) {
+            error += "Segundos invalidos. Deben estar entre 0 y 59.\n";
+            isValid = false;
+        }
+    
+        // Validar periodo (a.m o p.m)
+        if (period != "a.m" && period != "p.m") {
+            error += "Periodo invalido. Debe ser 'a.m' o 'p.m'.\n";
+            isValid = false;
+        }
+    
+        //Imprimo los errores (si hay)
+        if (!isValid) {
+            cout << error;
+        }
+    
+        return isValid;
+    }
 
     //Constructores para inicializar en los casos pedidos
     //Sin parametros
@@ -88,13 +97,13 @@ class Time {
     string get_period(){ return period; }
 
     //Metodos para mostrar los datos por separado
-    void display_hour(){ cout << hours << "h "; }
+    void display_hour(){ cout << "HORA: " << hours << "h "; }
 
-    void display_minutes(){ cout << minutes << "m "; }
+    void display_minutes(){ cout << "MINUTOS: " << minutes << "m "; }
 
-    void display_seconds(){ cout << seconds << "s "; }
+    void display_seconds(){ cout << "SEGUNDOS: " << seconds << "s "; }
 
-    void display_period(){ cout << period << endl; }
+    void display_period(){ cout << "PERIODO: " << period << endl; }
 
     //Metodo para mostrar la hora en formato de 12hs
     void display_12hs_time(){
@@ -127,7 +136,9 @@ class Time {
 
 enum class Options {
     h = 1,
+    //m,
     h_m,
+    //s,
     h_m_s,
     h_m_s_p,
     clock12hs,

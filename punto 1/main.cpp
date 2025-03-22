@@ -20,7 +20,15 @@ int main(){
                 time.display_12hs_time();
 
                 return false;
-            
+            /*
+            case static_cast<int>(Options:: m):
+                askMinutes(m);
+                time = Time(m);
+                time.display_minutes();
+
+                return false;
+            */
+
             case static_cast<int>(Options:: h_m):
                 askHour(h);
                 askMinutes(m);
@@ -29,6 +37,13 @@ int main(){
                 time.display_12hs_time();
 
                 return false;
+            /*   
+            case static_cast<int>(Options:: s):
+                askSeconds(s);
+                time.display_seconds();
+                
+                return false;
+            */ 
 
             case static_cast<int>(Options:: h_m_s):
                 askHour(h);
