@@ -7,10 +7,10 @@ int main(){
     string p;
     
     while(true){
-        cout << "Ingrese la opcion deseada:\n 1-Ingresar hora\n 2-Ingresar hora y minutos\n 3-Ingresar hora minutos y segundos\n 4-Ingresar horas, minutos, segundos y periodo\n 5- Reloj de 12 hs\n 6-Reloj 24 hs\n 7-OUT\n" << endl;
+        cout << "Ingrese la opcion deseada:\n 1- Ingresar hora\n 2- Ingresar hora y minutos\n 3- Ingresar hora minutos y segundos\n 4- Ingresar horas, minutos, segundos y periodo\n 5- Reloj de 12 hs\n 6- Reloj 24 hs (ingrese la hora de 1 a 12)\n 7- OUT\n" << endl;
+        cout << "Opcion>> ";
         cin >> option;
         cin.ignore();
-        cout << "\n>> ";
 
         switch(option){
             case static_cast<int>(Options:: h):
@@ -66,7 +66,6 @@ int main(){
                 askHour(h);
                 askMinutes(m);
                 askSeconds(s);
-                //VER LO DE LAS 24 HS
 
                 time = Time(h,m,s);
                 time.display_24hs_time();

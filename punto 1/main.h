@@ -110,11 +110,11 @@ class Time {
         //Defino una variable auxiliar ya que hours es un atributo de la clase
         int hours24 = hours;
 
-        if (period == "p.m" && hours != 12){
+        if ( hours != 12){
             hours24 += 12;
         }
         //Si la hora es 12, en reloj de 24hs pasa a ser 0
-        else if (period == "a.m" && hours == 12){
+        else if (hours == 12){
             hours24 = 0; 
         }
         //Imprimo con el formato HHh,MMm, SSs
