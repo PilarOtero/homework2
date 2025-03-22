@@ -138,10 +138,11 @@ class Time {
 };
 
 enum class Options {
-    HORAS = 1,
-    MINUTOS,
-    SEGUNDOS,
-    CLOCK12HS,
-    CLOCK24HS,
+    h = 1,
+    h_m,
+    h_m_s,
+    h_m_s_p,
+    clock12hs,
+    clock24hs,
     OUT,
 };
