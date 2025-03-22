@@ -136,3 +136,12 @@ class Time {
     }
 
 };
+
+enum class Options {
+    HORAS = 1,
+    MINUTOS,
+    SEGUNDOS,
+    CLOCK12HS,
+    CLOCK24HS,
+    OUT,
+};
