@@ -134,13 +134,5 @@ class Time {
         cout << setfill('0') << setw(2) << minutes << "m";
         cout << setfill('0') << setw(2) << seconds << "s";
     }
+
 };
-
-enum class Options {
-
-
-
-
-    
-}
-}
