@@ -43,12 +43,11 @@ class Time {
             error += "Periodo invalido. Debe ser 'a.m' o 'p.m'.\n";
             isValid = false;
         }
-    
-        //Imprimo los errores (si hay)
-        if (!isValid) {
-            cout << error;
+
+        if (error != ""){
+            throw invalid_argument(error);
         }
-    
+
         return isValid;
     }
 

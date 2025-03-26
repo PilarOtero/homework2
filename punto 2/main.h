@@ -71,7 +71,7 @@ class Curso {
     public:
         
         //Constructor sin parametros
-        Curso();
+        Curso(): name(" ") {};
 
         //Constructor con alumnos
         Curso(const vector<shared_ptr<Estudiante>> & class_students){

@@ -1,10 +1,13 @@
 #include "functions.cpp"
 
+
 int main(){
     int option, id;
     string student_fullname;
-
+    map<string, float> course;
     Curso course;
+
+    shared_ptr<Estudiante> student;
 
     cout << "Elija una opcion\n 1. Inscribir alumno a curso\n 2. Desinscribir alumno\n 3. Agregar nuevas calificaciones a un alumno " << endl;
     cout << "Opcion>> " << endl;
@@ -18,9 +21,9 @@ int main(){
 
             student_fullname = student_name();
             id = student_id();
-            shared_ptr<Estudiante> new_student = make_shared<Estudiante>(student_fullname, id);
+            student = make_shared<Estudiante>(student_fullname, id);
 
-            course.add_student(new_student);
+            course.add_student(student);
             cout << "El alumno ha sido inscripto correctamente." << endl;
             
             break;
@@ -35,7 +38,11 @@ int main(){
 
             break;
         
-        //case static_cast<int>(Options:: add_grades):
+        case static_cast<int>(Options:: add_grades):
+            student_fullname = student_name();
+            course = choose_course();
+            grade = add_grade(); 
+
 
     
     

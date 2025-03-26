@@ -1,7 +1,6 @@
 #include "main.h"
 #include "functions.cpp"
 
-//VER POR QUE SE IMPRIME 00000000
 int main(){
     int h, m, s, option;
     Time time;
@@ -12,103 +11,111 @@ int main(){
         cout << "Opcion>> ";
         cin >> option;
         cin.ignore();
+        
+        try {
+            switch(option){
+            
+                case static_cast<int>(Options:: h):
+                    askHour(h);
 
-        switch(option){
-            case static_cast<int>(Options:: h):
-                askHour(h);
-                
-                time = Time(h);
-                time.display_12hs_time();
-                time.display_hour();
+                    time = Time(h);
+                    time.display_12hs_time();
+                    time.display_hour();
 
-                return false;
+                    return false;
 
-            case static_cast<int>(Options:: h_m):
-                askHour(h);
-                askMinutes(m);
+                case static_cast<int>(Options:: h_m):
+                    askHour(h);
+                    askMinutes(m);
 
-                time = Time(h, m);
+                    time = Time(h, m);
 
-                time.display_12hs_time();
-                //Mostrar los datos por separado
-                time.display_hour();
-                time.display_minutes();
+                    time.display_12hs_time();
+                    //Mostrar los datos por separado
+                    time.display_hour();
+                    time.display_minutes();
 
-                return false;
+                    return false;
 
-            case static_cast<int>(Options:: h_m_s):
-                askHour(h);
-                askMinutes(m);
-                askSeconds(s);
+                case static_cast<int>(Options:: h_m_s):
+                    askHour(h);
+                    askMinutes(m);
+                    askSeconds(s);
 
-                time = Time(h,m,s);
+                    time = Time(h,m,s);
 
-                time.display_12hs_time();
-                //Mostrar los datos por separado
-                time.display_hour();
-                time.display_minutes();
-                time.display_seconds();
+                    time.display_12hs_time();
+                    //Mostrar los datos por separado
+                    time.display_hour();
+                    time.display_minutes();
+                    time.display_seconds();
 
-                return false;
-     
-            case static_cast<int>(Options:: h_m_s_p):
-                askHour(h);
-                askMinutes(m);
-                askSeconds(s);
-                askPeriod(p);
+                    return false;
+            
+                case static_cast<int>(Options:: h_m_s_p):
+                    askHour(h);
+                    askMinutes(m);
+                    askSeconds(s);
+                    askPeriod(p);
 
-                time = Time(h,m,s, p);
+                    time = Time(h,m,s, p);
 
-                time.display_12hs_time();
-                //Mostrar los datos por separado
-                time.display_hour();
-                time.display_minutes();
-                time.display_seconds();
-                time.display_period();
+                    time.display_12hs_time();
+                    //Mostrar los datos por separado
+                    time.display_hour();
+                    time.display_minutes();
+                    time.display_seconds();
+                    time.display_period();
 
-                return false;
+                    return false;
 
-            case static_cast<int>(Options:: clock12hs):  
-                askHour(h);
-                askMinutes(m);
-                askSeconds(s);
-                askPeriod(p);
+                case static_cast<int>(Options:: clock12hs):  
+                    askHour(h);
+                    askMinutes(m);
+                    askSeconds(s);
+                    askPeriod(p);
 
-                time = Time(h,m,s, p);
+                    time = Time(h,m,s, p);
 
-                time.display_12hs_time();
-                //Mostrar los datos por separado
-                time.display_hour();
-                time.display_minutes();
-                time.display_seconds();
-                time.display_period();
+                    time.display_12hs_time();
+                    //Mostrar los datos por separado
+                    time.display_hour();
+                    time.display_minutes();
+                    time.display_seconds();
+                    time.display_period();
 
 
-                return false;
+                    return false;
 
-            case static_cast<int>(Options:: clock24hs):
-                askHour(h);
-                askMinutes(m);
-                askSeconds(s);
-                askPeriod(p);
+                case static_cast<int>(Options:: clock24hs):
+                    askHour(h);
+                    askMinutes(m);
+                    askSeconds(s);
+                    askPeriod(p);
 
-                time = Time(h,m,s ,p);
+                    time = Time(h,m,s ,p);
 
-                time.display_24hs_time();
-                //Mostrar los datos por separado
-                time.display_hour();
-                time.display_minutes();
-                time.display_seconds();
+                    time.display_24hs_time();
+                    //Mostrar los datos por separado
+                    time.display_hour();
+                    time.display_minutes();
+                    time.display_seconds();
 
-                return false;
+                    return false;
 
-            case static_cast<int>(Options:: OUT):
-                cout << "Cerrando programa..." << endl;
-                return false;
+                case static_cast<int>(Options:: OUT):
+                    cout << "Cerrando programa..." << endl;
+                    return false;
 
-            default:
-                cout << "Opcion invalida. Ingrese nuevamente." << endl;
+                default:
+                    cout << "Opcion invalida. Ingrese nuevamente." << endl;
             }
+        } 
+        catch(invalid_argument &e){
+            cout << e.what() << endl;
+            return 1;
         }
+    }
     return 0;
+    
 }
