@@ -65,20 +65,44 @@ class Estudiante{
 class Curso {
     private: 
 
+        string name;
         vector<shared_ptr<Estudiante>> students;
 
     public:
+        
+        //Constructor sin parametros
+        Curso();
 
+        //Constructor con alumnos
+        Curso(const vector<shared_ptr<Estudiante>> & class_students){
+            students = class_students;
+        }
+
+        /*
+        SHALLOW COPY de la clase Curso -> utilice un vector de shared pointers para representar a los alumnos, de manera que cualquier 
+        modificacion en los atributos de estos punteros, se reflejara en todos los cursos.
+        */ 
+        Curso& operator= (const Curso& other){
+            //Compruebo que la asignacion no apunta a la clase sobre la que estoy trabajando 
+            if (this != &other){
+                students = other.students;
+            }
+            return *this;
+        }
+
+        //Metodo para asignar nombre al curso
+        Curso(string course_name) : name(course_name) {}
+
+        //Metodo para agregar al estudiante al final del vector
         void add_student(shared_ptr<Estudiante> student){
-            //Metodo de la clase vector, permite agregar al estudiante 
             students.push_back(move(student));
         }
 
-        void remove_student(const string& student){
+        void remove_student(int id){
             //Uso iteradores para recorrer la lista y poder utilizar la funcion erase
             for (auto it = students.begin(); it != students.end(); ++it){
-                if ((*it)->get_name() == student){
-                    students.erase(it);
+                if ((*it)->get_id() == id){
+                    it = students.erase(it);
                     cout << "El alumno ha sido eliminado exitosamente." << endl;
                     return;
                 }
@@ -127,4 +151,9 @@ class Curso {
 
 };
 
+enum class Options{
+    new_student = 1,
+    remove_student,
+    add_grades,
+};
 
