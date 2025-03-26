@@ -65,21 +65,11 @@ class Estudiante{
 class Curso {
     private: 
 
-        vector<unique_ptr<Estudiante>> students;
+        vector<shared_ptr<Estudiante>> students;
 
     public:
 
-        //Metodo par ver cuantos estudiantes estan inscriptos en el curso
-        int get_size() const {
-            int size = 0;
-            for (const auto& student: students){
-                size ++;
-            }
-            
-            return size;
-        }
-
-        void add_student(unique_ptr<Estudiante> student){
+        void add_student(shared_ptr<Estudiante> student){
             //Metodo de la clase vector, permite agregar al estudiante 
             students.push_back(move(student));
         }
@@ -107,12 +97,12 @@ class Curso {
         }
 
         bool is_full (){
-            if (get_size() == 20){
+            if (students.size() == 20){
                 cout << "El curso esta completo." << endl;
                 return true;
             }
 
-            cout << "El curso no esta completo. Tiene " << get_size() << " estudiantes" << endl;
+            cout << "El curso no esta completo. Tiene " << students.size() << " estudiantes" << endl;
             return false;
         }
 
@@ -123,7 +113,7 @@ class Curso {
             }
 
             sort(students.begin(), students.end(),
-                [](const unique_ptr<Estudiante>& a, const unique_ptr<Estudiante>& b){
+                [](const shared_ptr<Estudiante>& a, const shared_ptr<Estudiante>& b){
                     //Ordena alfabeticamente de A a Z utilizando "<"
                     return a->get_name() < b->get_name();
                 });
