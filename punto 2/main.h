@@ -31,17 +31,24 @@ class Estudiante{
         float get_final_media() {return final_media; }
 
         //Metodo para agregar una nota a un curso
-        void add_grade(string course, int grade) {
+        bool add_grade(string course, int grade) {
+            if (courses.find(course) == courses.end()){
+                //Si al recorrer las materias (keys del map) no encuentro el curso, entonces no existe (end apunta despues del ultimo elemento)
+                cout << "El curso ingresado no existe" << endl;
+                return false;
+            }
+            
             courses[course] = grade;
             //Actualizo el promedio final en funcion del promedio del curso ingresado
             calculate_final_media();
+            return true;
         }
 
         //Metodo para obtener el promedio final
-        void calculate_final_media(){
+        float calculate_final_media(){
             if (courses.empty()){
                 final_media = 0.0;
-                return;
+                return final_media;
             }
 
             float partial_media = 0;
@@ -49,6 +56,7 @@ class Estudiante{
                 partial_media += grade;
             }
             final_media = partial_media / courses.size();
+            return final_media;
         }
 
         void display_courses(){
@@ -73,10 +81,16 @@ class Curso {
         //Constructor sin parametros
         Curso(): name(" ") {};
 
+        //Constructor solo con nombre
+        Curso(string course_name) : name(course_name) {}
+
         //Constructor con alumnos
-        Curso(const vector<shared_ptr<Estudiante>> & class_students){
+        Curso(string course_name, const vector<shared_ptr<Estudiante>>& class_students){
+            name = course_name;
             students = class_students;
         }
+
+        string get_name() {return name; }
 
         /*
         SHALLOW COPY de la clase Curso -> utilice un vector de shared pointers para representar a los alumnos, de manera que cualquier 
@@ -85,14 +99,13 @@ class Curso {
         Curso& operator= (const Curso& other){
             //Compruebo que la asignacion no apunta a la clase sobre la que estoy trabajando 
             if (this != &other){
+                name = other.name;  
                 students = other.students;
             }
             return *this;
         }
 
-        //Metodo para asignar nombre al curso
-        Curso(string course_name) : name(course_name) {}
-
+        
         //Metodo para agregar al estudiante al final del vector
         void add_student(shared_ptr<Estudiante> student){
             students.push_back(move(student));
@@ -117,6 +130,7 @@ class Curso {
                     return true;
                 }
             }
+            cout << "El alumno no pertenece al curso." << endl;
             return false;
         }
 
@@ -155,5 +169,8 @@ enum class Options{
     new_student = 1,
     remove_student,
     add_grades,
+    final_media,
+    students_list,
+    capacity,
 };
 

@@ -44,6 +44,7 @@ class Time {
             isValid = false;
         }
 
+        //Si el string error no esta vacio, hay errores. Genero un argumento invalido
         if (error != ""){
             throw invalid_argument(error);
         }
@@ -135,9 +136,7 @@ class Time {
 
 enum class Options {
     h = 1,
-    //m,
     h_m,
-    //s,
     h_m_s,
     h_m_s_p,
     clock12hs,

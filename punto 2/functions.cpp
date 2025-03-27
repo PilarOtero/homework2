@@ -2,15 +2,13 @@
 #include <string>
 #include <iostream>
 
-Curso choose_course(){
-    string selected_course; 
+string choose_course(){
+    string course_name; 
 
     cout << "Ingrese el curso\n>> " << endl;
-    getline(cin, selected_course);
+    getline(cin, course_name);
 
-    Curso course(selected_course);
-
-    return course;
+    return course_name;
 }
 
 string student_name(){
@@ -29,16 +27,12 @@ int student_id(){
     return id;
 }
 
-pair<string,float> add_grade(){
-    string course;
+int ask_grade(){
     float grade; 
-
-    cout << "Ingrese el curso en el que agregar la nueva calificacion\n>> " << endl;
-    getline(cin, course);
-
+    
     cout << "Ingrese la calificacion\n>> " << endl;
     cin >> grade; cin.ignore();
 
-    return make_pair(course, grade);
-
+    return grade;
+    
 }
