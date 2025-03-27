@@ -2,15 +2,6 @@
 #include <string>
 #include <iostream>
 
-string choose_course(){
-    string course_name; 
-
-    cout << "Ingrese el curso\n>> " << endl;
-    getline(cin, course_name);
-
-    return course_name;
-}
-
 string student_name(){
     string fullname;
     cout << "Ingrese el nombre del estudiante \n>> " << endl;
@@ -35,4 +26,35 @@ float ask_grade(){
 
     return grade;
     
+}
+
+void handle_adding_student(Curso course){
+    string student_fullname = student_name();
+    int id = student_id();
+    shared_ptr<Estudiante> student = make_shared<Estudiante>(student_fullname, id);
+
+    course.add_student(student);
+    cout << "El alumno " << student_fullname<< " ha sido inscripto correctamente." << endl;
+}
+
+void handle_removing_student(Curso course){
+    int id = student_id();
+
+    if (course.find_student(id)){
+        course.remove_student(id);
+        cout << "El alumno con numero de legajo " << id << "ha sido desinscripto correctamente." << endl;
+    }
+
+    cout << "El alumno con numero de legajo " << id << "no esta inscripto en el curso" << endl; 
+}
+
+void handle_adding_grades(Curso course){
+    int id = student_id();
+    shared_ptr<Estudiante> student = course.find_student(id);
+    if (student){
+        float grade = ask_grade();
+        student->add_grade(course.get_name(), grade);
+        cout << "Se ha agregado la calificacion corretamente." << endl;
+    }
+
 }

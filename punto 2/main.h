@@ -31,17 +31,11 @@ class Estudiante{
         float get_final_media() {return final_media; }
 
         //Metodo para agregar una nota a un curso
-        bool add_grade(string course, int grade) {
-            if (courses.find(course) == courses.end()){
-                //Si al recorrer las materias (keys del map) no encuentro el curso, entonces no existe (end apunta despues del ultimo elemento)
-                cout << "El curso ingresado no existe" << endl;
-                return false;
-            }
-            
+        float add_grade(string course, float grade) {   
             courses[course] = grade;
             //Actualizo el promedio final en funcion del promedio del curso ingresado
             calculate_final_media();
-            return true;
+            return grade;
         }
 
         //Metodo para obtener el promedio final
@@ -108,7 +102,7 @@ class Curso {
         
         //Metodo para agregar al estudiante al final del vector
         void add_student(shared_ptr<Estudiante> student){
-            students.push_back(move(student));
+            students.push_back(student);
         }
 
         void remove_student(int id){
@@ -123,15 +117,15 @@ class Curso {
         }
 
         //Metodo para encontrar al estudiante cuyo legajo sea el ingresado
-        bool find_student(int identification){
+        shared_ptr<Estudiante> find_student(int identification){
             for (const auto& student: students){
                 if (student->get_id() == identification){
                     cout << "El alumno pertenece al curso." << endl;
-                    return true;
+                    return student;
                 }
             }
             cout << "El alumno no pertenece al curso." << endl;
-            return false;
+            return nullptr;
         }
 
         bool is_full (){
