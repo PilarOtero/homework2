@@ -27,7 +27,7 @@ int student_id(){
     return id;
 }
 
-int ask_grade(){
+float ask_grade(){
     float grade; 
     
     cout << "Ingrese la calificacion\n>> " << endl;

@@ -2,10 +2,11 @@
 
 
 int main(){
-    int option, id, grade;
+    int option, id;
     string student_fullname, course_name;
     map<string, Curso> courses;
     map<string, float> grades;
+    float grade, final_media;
     shared_ptr<Estudiante> student;
 
     cout << "Elija una opcion\n 1. Inscribir alumno a curso\n 2. Desinscribir alumno\n 3. Agregar nuevas calificaciones a un alumno\n 4. Mostrar promedio final del alumno\n 5. Buscar alumno en curso\n 6. Ver listado de alumnos\n 7. Ver capacidad del curso " << endl;
@@ -58,7 +59,6 @@ int main(){
                 grade = ask_grade(); 
 
                 bool added = student->add_grade(course_name, grade);
-                
                 if (added){
                     cout << "Se ha realizado la operacion correctamente." << endl;
                 }
@@ -76,23 +76,16 @@ int main(){
             
             
         //VER
-        /*case static_cast<int>(Options:: final_media):
+        case static_cast<int>(Options:: final_media):
             student_fullname = student_name();
             id = student_id();
-            course_name = choose_course();
-
-            if (courses[course_name].find_student(id)){
-                shared_ptr<Estudiante> student = nullptr; //Esto asi puedo recorrer el curso y hacer que apunte al alumno (ya existe)
-
-                float final_media = student->calculate_final_media();
-                cout << "El promedio de este alumno en el curso es " << final_media << endl;
-            }
-            else {
-                cout << "El alumno con id " << id << " no esta inscripto a este curso" << endl;
-            }
+            
+            final_media = student->calculate_final_media();
+            //Muestra el promedio del alumno en cada curso y el promedio final general
+            student->display_courses();
 
             break;
-        */
+        
 
         case static_cast<int>(Options:: students_list):
             course_name = choose_course();
@@ -100,7 +93,7 @@ int main(){
             break;
         
         case static_cast<int>(Options:: capacity):
-            course_name = choose_course;
+            course_name = choose_course();
             courses[course_name].is_full();
             break;
         }
