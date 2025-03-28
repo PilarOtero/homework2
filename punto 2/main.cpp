@@ -9,7 +9,7 @@ int main(){
     shared_ptr<Estudiante> student;
 
     while (true){
-        cout << "Elija una opcion\n 1. Inscribir alumno a curso\n 2. Desinscribir alumno\n 3. Agregar nuevas calificaciones a un alumno\n 4. Mostrar promedio final del alumno\n 5. Buscar alumno en curso\n 6. Ver listado de alumnos\n 7. Ver capacidad del curso " << endl;
+        cout << "-- MENU --\n 1. Inscribir alumno a curso\n 2. Desinscribir alumno\n 3. Agregar nuevas calificaciones a un alumno\n 4. Mostrar promedio final del alumno\n 5. Buscar alumno en curso\n 6. Ver listado de alumnos\n 7. Ver capacidad del curso " << endl;
         cout << "Opcion>> " << endl;
         cin >> option;
         cin.ignore();

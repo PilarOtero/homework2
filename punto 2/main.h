@@ -102,7 +102,7 @@ class Curso {
         
         //Metodo para agregar al estudiante al final del vector
         void add_student(shared_ptr<Estudiante> student){
-            students.push_back(student);
+            students.push_back(move(student));
         }
 
         void remove_student(int id){

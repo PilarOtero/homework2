@@ -42,10 +42,10 @@ void handle_removing_student(Curso course){
 
     if (course.find_student(id)){
         course.remove_student(id);
-        cout << "El alumno con numero de legajo " << id << "ha sido desinscripto correctamente." << endl;
+        cout << "El alumno con numero de legajo " << id << " ha sido desinscripto correctamente." << endl;
     }
 
-    cout << "El alumno con numero de legajo " << id << "no esta inscripto en el curso" << endl; 
+    cout << "El alumno con numero de legajo " << id << " no esta inscripto en el curso" << endl; 
 }
 
 void handle_adding_grades(Curso course){

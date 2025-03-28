@@ -126,6 +126,10 @@ class Time {
         else if (period == "a.m" && hours == 12){
             hours24 = 0; 
         }
+
+        //Actualizo hours para que se corresponda con la hora en el reloj de 24hs
+        hours = hours24;
+
         //Imprimo con el formato HHh,MMm, SSs
         cout << setfill('0') << setw(2) << hours24 << "h";
         cout << setfill('0') << setw(2) << minutes << "m";
@@ -134,14 +138,17 @@ class Time {
 
 };
 
-enum class Options {
+enum class Options1 {
     h = 1,
     h_m,
     h_m_s,
     h_m_s_p,
-    clock12hs,
-    clock24hs,
     OUT,
+};
+
+enum class Options2 {
+    clock12hs = 1,
+    clock24hs,
 };
 
 #endif
