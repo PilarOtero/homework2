@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include "main.h"
+#include "time.cpp"
 
 using namespace std;
 

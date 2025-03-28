@@ -1,6 +1,7 @@
 #include "main.h"
 #include "functions.cpp"
 
+
 int main(){
     int h, m, s, option;
     Time time;
