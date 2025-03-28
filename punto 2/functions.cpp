@@ -1,4 +1,4 @@
-#include "main.h"
+#include "curso.h"
 #include <string>
 #include <iostream>
 
@@ -17,6 +17,12 @@ int student_id(){
 
     return id;
 }
+int grades(){
+    int grades;
+    cout << "Ingrese la cantidad de notas" << endl;
+    cin >> grades;
+    return grades;
+}
 
 float ask_grade(){
     float grade; 
@@ -33,11 +39,23 @@ float ask_grade(){
 void handle_adding_student(Curso& course){
     string student_fullname = student_name();
     int id = student_id();
-    shared_ptr<Estudiante> student = make_shared<Estudiante>(student_fullname, id);
 
+    if (course.find_student(id)){
+        cout << "El estudiante ya esta inscripto en el curso." << endl;
+    }
+
+    shared_ptr<Estudiante> student = make_shared<Estudiante>(student_fullname, id);
     course.add_student(student);
     cout << "El alumno " << student_fullname<< " ha sido inscripto correctamente." << endl;
+
+    int n = grades();
+    for (int i = 0; i < n; i ++){
+        float grade = ask_grade();
+        student->add_grade(grade);
+    }
+    
 }
+
 
 void handle_removing_student(Curso& course){
     int id = student_id();
@@ -51,6 +69,7 @@ void handle_removing_student(Curso& course){
     }
 }
 
+/*
 void handle_adding_grades(Curso& course){
     int id = student_id();
     const shared_ptr<Estudiante> student = course.find_student(id);
@@ -59,21 +78,22 @@ void handle_adding_grades(Curso& course){
     }
 
     float grade = ask_grade();
-    student->add_grade(student->get_name(), grade);
+    student->add_grade(course.get_course_name(), grade);
     cout << "Se ha agregado la calificacion corretamente." << endl;
-
 }
-
+*/
+//MAL VER
 void handle_final_media(Curso& course){
     int id = student_id();
     const shared_ptr<Estudiante> student = course.find_student(id);
 
     if (! student){
-        cout << student << "no esta inscripto en el curso." << endl;
+        cout << "El alumno con ID " << id << " no esta inscripto en el curso." << endl;
+        return;
     }
 
     float final_media = student->calculate_final_media();
-    cout << "El promedio final de " << student->get_name() << " es " << final_media << endl;
+    student->display_courses();
 }
 
 void handle_capacity(Curso& course){

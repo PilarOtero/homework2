@@ -35,19 +35,56 @@ void askPeriod(string &p){
     cin >> p;
 }
 
+void askTime(int &h, int &m, bool with_minutes, int &s, bool with_seconds, string &p, bool with_period){
+    askHour(h);
+    if (with_minutes) askMinutes(m);
+    if (with_seconds) askSeconds(s);
+    if (with_period) askPeriod(p);
+}
+
+void ask_clock(int &h, int &m, bool with_minutes, int &s, bool with_seconds, string &p, bool with_period){
+    Time time;
+    int option;
+
+    cout << "En que formato desea ver la hora?\n 1- Reloj de 12h\n 2- Reloj de 24 hs\n >>";
+    cin >> option;
+
+    switch(option){
+        case static_cast<int>(Options2:: clock12hs):
+            time.set12hstime();
+            time.sethour();
+            if (with_minutes) time.setminutes();
+            if (with_seconds) time.setseconds();
+            if (with_period) time.setperiod();
+
+            break;
+        case static_cast<int>(Options2:: clock24hs):
+            time = Time(h, m, s, p);
+            time.set24hstime();
+
+            time.sethour();
+            if (with_minutes) time.setminutes();
+            if (with_seconds) time.setseconds();
+
+            break;
+    }
+}
+
 void handle_h(int &h){
     Time time;
     string option;
     int option2;
+    int m = 0, s = 0;
+    string p = "a.m";
     
-    askHour(h);
+    askTime(h,m,false,s,false,p,false);
     time = Time(h);
 
     cout << "Desea realizar cambios? Si/No\n";
     cin >> option;
 
     if (option == "Si" || option == "SI" || option == "si"){
-        askHour(h);
+        askTime(h,m,false,s,false,p,false);
         time = Time(h);
     }
 
@@ -56,16 +93,12 @@ void handle_h(int &h){
 
     switch(option2){
         case static_cast<int>(Options2:: clock12hs):
-            time.display_12hs_time();
-            time.display_hour();
+            time.set12hstime();
+            time.sethour();
             break;
         case static_cast<int>(Options2:: clock24hs):
-            string p;
-            askPeriod(p);
-            time = Time(h, 0, 0, p);
-            time.display_24hs_time();
-            //VER POR QUE SE IMPRME LA HORA AM
-            time.display_hour();
+            time.set24hstime();
+            time.sethour();
             break;
     }
 }
@@ -74,17 +107,17 @@ void handle_hm(int &h, int &m){
     Time time;
     string option;
     int option2;
+    int s = 0;
+    string p = "a.m";
 
-    askHour(h);
-    askMinutes(m);
+    askTime(h,m,true,s,false,p,false);
     time = Time(h, m);
 
     cout << "Desea realizar cambios? Si/No\n";
     cin >> option;
 
     if (option == "Si" || option == "SI" || option == "si"){
-        askHour(h);
-        askMinutes(m);
+        askTime(h,m,true,s,false,p,false);
         time = Time(h,m);
     }
 
@@ -93,40 +126,38 @@ void handle_hm(int &h, int &m){
 
     switch(option2){
         case static_cast<int>(Options2:: clock12hs):
-            time.display_12hs_time();
-            time.display_hour();
+            time.set12hstime();
+            
+            time.sethour();
+            time.setminutes();
+            
             break;
+
         case static_cast<int>(Options2:: clock24hs):
-            string p;
-            askPeriod(p);
-            time = Time(h, m, 0, p);
-            time.display_24hs_time();
-            //VER POR QUE SE IMPRME LA HORA AM
-            time.display_hour();
-            time.display_minutes();
+            time.set24hstime();
+
+            time.sethour();
+            time.setminutes();
+
             break;
     }
 
 }
 
-
 void handle_hms(int &h, int &m, int &s){
     Time time;
     string option;
     int option2;
+    string p = "a.m";
 
-    askHour(h);
-    askMinutes(m);
-    askSeconds(s);
+    askTime(h,m,true,s,true,p, false);
     time = Time(h, m,s);
 
     cout << "Desea desea realizar cambios? Si/No\n";
     cin >> option;
 
     if (option == "Si" || option == "SI" || option == "si"){
-        askHour(h);
-        askMinutes(m);
-        askSeconds(s);
+        askTime(h,m,true,s,true,p, false);
         time = Time(h,m,s);
     }
 
@@ -135,18 +166,20 @@ void handle_hms(int &h, int &m, int &s){
 
     switch(option2){
         case static_cast<int>(Options2:: clock12hs):
-            time.display_12hs_time();
-            time.display_hour();
+            time.set12hstime();
+            time.sethour();
+            time.setminutes();
+            time.setseconds();
+
             break;
+
         case static_cast<int>(Options2:: clock24hs):
-            string p;
-            askPeriod(p);
-            time = Time(h, m, s, p);
-            time.display_24hs_time();
-            //VER POR QUE SE IMPRME LA HORA AM
-            time.display_hour();
-            time.display_minutes();
-            time.display_seconds();
+            time.set24hstime();
+
+            time.sethour();
+            time.setminutes();
+            time.setseconds();
+
             break;
     }
 
@@ -156,42 +189,19 @@ void handle_hms(int &h, int &m, int &s){
 void handle_hmsp(int &h, int &m, int &s, string p){
     Time time;
     string option;
-    int option2;
 
-    askHour(h);
-    askMinutes(m);
-    askSeconds(s);
-    askPeriod(p);
+    askTime(h,m,true,s,true,p,true);
     time = Time(h, m,s, p);
 
     cout << "Desea desea realizar cambios? Si/No\n";
     cin >> option;
 
     if (option == "Si" || option == "SI" || option == "si"){
-        askHour(h);
-        askMinutes(m);
-        askSeconds(s);
-        askPeriod(p);
+        askTime(h,m,true,s,true,p,true);
         time = Time(h,m,s,p);
     }
 
-    cout << "En que formato desea ver la hora?\n 1- Reloj de 12h\n 2- Reloj de 24 hs\n >>";
-    cin >> option2;
-
-    switch(option2){
-        case static_cast<int>(Options2:: clock12hs):
-            time.display_12hs_time();
-            time.display_hour();
-            break;
-        case static_cast<int>(Options2:: clock24hs):
-            time.display_24hs_time();
-            //VER POR QUE SE IMPRME LA HORA AM
-            time.display_hour();
-            time.display_minutes();
-            time.display_seconds();
-            time.display_period();
-            break;
-    }
+    ask_clock(h,m,true,s,true,p,true);
 
 }
 

@@ -90,23 +90,20 @@ class Time {
         }
     }
     
-    //Metodos para obtener los valores por separado
-    int get_hours() {return hours; }
-    int get_minutes() {return minutes; }
-    int get_seconds(){ return seconds; }
-    string get_period(){ return period; }
+    //Getters para obtener los valores por separado
+    int gethours() {return hours; }
+    int getminutes() {return minutes; }
+    int getseconds(){ return seconds; }
+    string getperiod(){ return period; }
 
-    //Metodos para mostrar los datos por separado
-    void display_hour(){ cout << "HORA: " << hours << "h "; }
+    //Setters
+    void sethour(){ cout << "HORA: " << hours << "h "; }
+    void setminutes(){ cout << "MINUTOS: " << minutes << "m "; }
+    void setseconds(){ cout << "SEGUNDOS: " << seconds << "s "; }
+    void setperiod(){ cout << "PERIODO: " << period << endl; }
 
-    void display_minutes(){ cout << "MINUTOS: " << minutes << "m "; }
-
-    void display_seconds(){ cout << "SEGUNDOS: " << seconds << "s "; }
-
-    void display_period(){ cout << "PERIODO: " << period << endl; }
-
-    //Metodo para mostrar la hora en formato de 12hs
-    void display_12hs_time(){
+    //Setter para mostrar la hora en formato de 12hs
+    void set12hstime(){
         //Imprimo con el formato HHh, MMm, SSs, a.m/p.m
         cout << setfill('0') << setw(2) << hours << "h";
         cout << setfill('0') << setw(2) << minutes << "m";
@@ -114,8 +111,8 @@ class Time {
         cout << " " << period << endl;
     }
 
-    //Metodo para mostrar la hora en formato de 24hs
-    void display_24hs_time(){
+    //Setter para mostrar la hora en formato de 24hs
+    void set24hstime(){
         //Defino una variable auxiliar ya que hours es un atributo de la clase
         int hours24 = hours;
 

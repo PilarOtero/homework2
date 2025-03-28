@@ -8,13 +8,14 @@ using namespace std;
 #ifndef MAIN_H
 #define MAIN_H
 
+class Curso;
+
 class Estudiante{
     private: 
 
         string fullname; 
         int identification;
-        //Uso map para asociar curso (key) con nota (value)
-        map<string, float> courses;
+        vector<float> grades;
         float final_media; //Promedio final
 
     public:
@@ -33,34 +34,32 @@ class Estudiante{
         float get_final_media() {return final_media; }
 
         //Metodo para agregar una nota a un curso
-        float add_grade(string course, float grade) {   
-            courses[course] = grade;
-            //Actualizo el promedio final en funcion del promedio del curso ingresado
-            calculate_final_media();
-            return grade;
+        void add_grade(float grade) {   
+            grades.push_back(move(grade));
         }
 
         //Metodo para obtener el promedio final
         float calculate_final_media(){
-            if (courses.empty()){
+            if (grades.empty()){
                 final_media = 0.0;
                 return final_media;
             }
 
-            float partial_media = 0;
-            for (const auto& [couse, grade] : courses){
+            float partial_media = 0.0;
+            for (const auto& grade : grades){
                 partial_media += grade;
             }
-            final_media = partial_media / courses.size();
+            final_media = partial_media / grades.size();
             return final_media;
         }
 
+        //VER ESTO
         void display_courses(){
             cout << "PROMEDIO FINAL - ESTUDIANTE: " << fullname << ". (Nro de legajo: " << identification << ")\n";
             cout << "Promedio general: " << final_media << endl;
-            cout << "Notas finales por curso: " << endl;
-            for (const auto& [course,grade] : courses){
-                cout << "CURSO->: " << course << "NOTA FINAL-> " << grade << endl;
+            cout << "NOTAS FINALES POR CURSO: " << endl;
+            for (const auto& grade : grades){
+                cout << "Nota final: " << grade << endl;
             }
         }
 
@@ -79,6 +78,9 @@ class Curso {
 
         //Constructor solo con nombre
         Curso(string course_name) : name(course_name) {}
+
+        //Metodo para obtener el nombre del curso
+        string get_course_name(){ return name; }
 
         //Constructor con alumnos
         Curso(string course_name, const vector<shared_ptr<Estudiante>>& class_students){
@@ -119,11 +121,9 @@ class Curso {
         shared_ptr<Estudiante> find_student(int identification){
             for (const auto& student: students){
                 if (student->get_id() == identification){
-                    //cout << "El alumno pertenece al curso." << endl;
                     return student;
                 }
             }
-            cout << "El alumno no pertenece al curso." << endl;
             return nullptr;
         }
 
@@ -153,7 +153,7 @@ class Curso {
             [this] (const shared_ptr<Estudiante> student1, const shared_ptr<Estudiante> student2){
                 return sort_students(student1, student2);});
             
-            cout << "LISTADO ESTUDIANTES:\n" << endl;
+            cout << "LISTADO DE ESTUDIANTES:" << endl;
             for (const auto& student: students){
                 cout << student->get_name() << endl;
             }
@@ -164,12 +164,12 @@ class Curso {
 enum class Options{
     new_student = 1,
     remove_student,
-    add_grades,
     final_media,
     look4_student,
     students_list,
     capacity,
     OUT,
 };
+
 
 #endif
