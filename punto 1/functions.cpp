@@ -51,20 +51,20 @@ void ask_clock(int &h, int &m, bool with_minutes, int &s, bool with_seconds, str
 
     switch(option){
         case static_cast<int>(Options2:: clock12hs):
-            time.set12hstime();
-            time.sethour();
-            if (with_minutes) time.setminutes();
-            if (with_seconds) time.setseconds();
-            if (with_period) time.setperiod();
+            time.display_12hs_time();
+            time.display_hour();
+            if (with_minutes) time.display_minutes();
+            if (with_seconds) time.display_seconds();
+            if (with_period) time.display_period();
 
             break;
         case static_cast<int>(Options2:: clock24hs):
             time = Time(h, m, s, p);
-            time.set24hstime();
+            time.display_24hs_time();
 
-            time.sethour();
-            if (with_minutes) time.setminutes();
-            if (with_seconds) time.setseconds();
+            time.display_hour();
+            if (with_minutes) time.display_minutes();
+            if (with_seconds) time.display_seconds();
 
             break;
     }
@@ -93,12 +93,12 @@ void handle_h(int &h){
 
     switch(option2){
         case static_cast<int>(Options2:: clock12hs):
-            time.set12hstime();
-            time.sethour();
+            time.display_12hs_time();
+            time.display_hour();
             break;
         case static_cast<int>(Options2:: clock24hs):
-            time.set24hstime();
-            time.sethour();
+            time.display_24hs_time();
+            time.display_hour();
             break;
     }
 }
@@ -126,18 +126,18 @@ void handle_hm(int &h, int &m){
 
     switch(option2){
         case static_cast<int>(Options2:: clock12hs):
-            time.set12hstime();
+            time.display_12hs_time();
             
-            time.sethour();
-            time.setminutes();
+            time.display_hour();
+            time.display_minutes();
             
             break;
 
         case static_cast<int>(Options2:: clock24hs):
-            time.set24hstime();
+            time.display_24hs_time();
 
-            time.sethour();
-            time.setminutes();
+            time.display_hour();
+            time.display_minutes();
 
             break;
     }
@@ -166,19 +166,19 @@ void handle_hms(int &h, int &m, int &s){
 
     switch(option2){
         case static_cast<int>(Options2:: clock12hs):
-            time.set12hstime();
-            time.sethour();
-            time.setminutes();
-            time.setseconds();
+            time.display_12hs_time();
+            time.display_hour();
+            time.display_minutes();
+            time.display_seconds();
 
             break;
 
         case static_cast<int>(Options2:: clock24hs):
-            time.set24hstime();
+            time.display_24hs_time();
 
-            time.sethour();
-            time.setminutes();
-            time.setseconds();
+            time.display_hour();
+            time.display_minutes();
+            time.display_seconds();
 
             break;
     }
