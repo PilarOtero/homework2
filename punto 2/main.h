@@ -5,6 +5,8 @@
 #include <algorithm>
 
 using namespace std;
+#ifndef MAIN_H
+#define MAIN_H
 
 class Estudiante{
     private: 
@@ -157,7 +159,6 @@ class Curso {
             }
 
         }
-
 };
 
 enum class Options{
@@ -171,3 +172,4 @@ enum class Options{
     OUT,
 };
 
+#endif

@@ -85,5 +85,8 @@ void handle_searching_student(Curso& course){
     if (course.find_student(id)){
         cout << "El alumno pertenece al curso." << endl;
     }
+}
 
+void handle_students_list(Curso& course){
+    course.display_students();
 }
