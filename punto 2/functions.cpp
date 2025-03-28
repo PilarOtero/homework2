@@ -28,7 +28,9 @@ float ask_grade(){
     
 }
 
-void handle_adding_student(Curso course){
+//En la funciones que estan a continuacion, paso course como parametro por referencia para que los cambios se reflejen en main
+
+void handle_adding_student(Curso& course){
     string student_fullname = student_name();
     int id = student_id();
     shared_ptr<Estudiante> student = make_shared<Estudiante>(student_fullname, id);
@@ -37,24 +39,51 @@ void handle_adding_student(Curso course){
     cout << "El alumno " << student_fullname<< " ha sido inscripto correctamente." << endl;
 }
 
-void handle_removing_student(Curso course){
+void handle_removing_student(Curso& course){
     int id = student_id();
 
     if (course.find_student(id)){
         course.remove_student(id);
         cout << "El alumno con numero de legajo " << id << " ha sido desinscripto correctamente." << endl;
     }
-
+    else{ 
     cout << "El alumno con numero de legajo " << id << " no esta inscripto en el curso" << endl; 
+    }
 }
 
-void handle_adding_grades(Curso course){
+void handle_adding_grades(Curso& course){
     int id = student_id();
-    shared_ptr<Estudiante> student = course.find_student(id);
-    if (student){
-        float grade = ask_grade();
-        student->add_grade(course.get_name(), grade);
-        cout << "Se ha agregado la calificacion corretamente." << endl;
+    const shared_ptr<Estudiante> student = course.find_student(id);
+    if (! student){
+        cout << student << "no esta inscripto en el curso." << endl;
+    }
+
+    float grade = ask_grade();
+    student->add_grade(student->get_name(), grade);
+    cout << "Se ha agregado la calificacion corretamente." << endl;
+
+}
+
+void handle_final_media(Curso& course){
+    int id = student_id();
+    const shared_ptr<Estudiante> student = course.find_student(id);
+
+    if (! student){
+        cout << student << "no esta inscripto en el curso." << endl;
+    }
+
+    float final_media = student->calculate_final_media();
+    cout << "El promedio final de " << student->get_name() << " es " << final_media << endl;
+}
+
+void handle_capacity(Curso& course){
+    course.capacity();
+}
+
+void handle_searching_student(Curso& course){
+    int id = student_id();
+    if (course.find_student(id)){
+        cout << "El alumno pertenece al curso." << endl;
     }
 
 }

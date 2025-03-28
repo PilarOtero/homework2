@@ -84,8 +84,6 @@ class Curso {
             students = class_students;
         }
 
-        string get_name() {return name; }
-
         /*
         SHALLOW COPY de la clase Curso -> utilice un vector de shared pointers para representar a los alumnos, de manera que cualquier 
         modificacion en los atributos de estos punteros, se reflejara en todos los cursos.
@@ -99,7 +97,6 @@ class Curso {
             return *this;
         }
 
-        
         //Metodo para agregar al estudiante al final del vector
         void add_student(shared_ptr<Estudiante> student){
             students.push_back(move(student));
@@ -120,7 +117,7 @@ class Curso {
         shared_ptr<Estudiante> find_student(int identification){
             for (const auto& student: students){
                 if (student->get_id() == identification){
-                    cout << "El alumno pertenece al curso." << endl;
+                    //cout << "El alumno pertenece al curso." << endl;
                     return student;
                 }
             }
@@ -128,14 +125,19 @@ class Curso {
             return nullptr;
         }
 
-        bool is_full (){
+        bool capacity (){
             if (students.size() == 20){
                 cout << "El curso esta completo." << endl;
                 return true;
             }
 
-            cout << "El curso no esta completo. Tiene " << students.size() << " estudiantes" << endl;
+            cout << "El curso tiene " << students.size() << " estudiante(s). Aun tiene capacidad para " << 20 - students.size() << " alumnos mas. " << endl;
             return false;
+        }
+
+        //Metodo para ordenar a los estudiantes de la A a la Z
+        bool sort_students(const shared_ptr<Estudiante> student1, const shared_ptr<Estudiante> student2){
+            return student1->get_name() < student2->get_name();
         }
 
         void display_students(){
@@ -143,13 +145,12 @@ class Curso {
                 cout << "El curso esta vacio" << endl;
                 return;
             }
-
+            
             sort(students.begin(), students.end(),
-                [](const shared_ptr<Estudiante>& a, const shared_ptr<Estudiante>& b){
-                    //Ordena alfabeticamente de A a Z utilizando "<"
-                    return a->get_name() < b->get_name();
-                });
-
+            //Llamo al metodo de la clase Curso (uso this porq va al objeto puntual dentro de la clase) que ordena a los estudiantes
+            [this] (const shared_ptr<Estudiante> student1, const shared_ptr<Estudiante> student2){
+                return sort_students(student1, student2);});
+            
             cout << "LISTADO ESTUDIANTES:\n" << endl;
             for (const auto& student: students){
                 cout << student->get_name() << endl;
@@ -164,7 +165,9 @@ enum class Options{
     remove_student,
     add_grades,
     final_media,
+    look4_student,
     students_list,
     capacity,
+    OUT,
 };
 
