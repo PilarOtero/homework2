@@ -54,13 +54,9 @@ class Estudiante{
         }
 
         //VER ESTO
-        void display_courses(){
+        void setfinalmedia(){
             cout << "PROMEDIO FINAL - ESTUDIANTE: " << fullname << ". (Nro de legajo: " << identification << ")\n";
             cout << "Promedio general: " << final_media << endl;
-            cout << "NOTAS FINALES POR CURSO: " << endl;
-            for (const auto& grade : grades){
-                cout << "Nota final: " << grade << endl;
-            }
         }
 
 };

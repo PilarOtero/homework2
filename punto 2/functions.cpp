@@ -69,20 +69,6 @@ void handle_removing_student(Curso& course){
     }
 }
 
-/*
-void handle_adding_grades(Curso& course){
-    int id = student_id();
-    const shared_ptr<Estudiante> student = course.find_student(id);
-    if (! student){
-        cout << student << "no esta inscripto en el curso." << endl;
-    }
-
-    float grade = ask_grade();
-    student->add_grade(course.get_course_name(), grade);
-    cout << "Se ha agregado la calificacion corretamente." << endl;
-}
-*/
-//MAL VER
 void handle_final_media(Curso& course){
     int id = student_id();
     const shared_ptr<Estudiante> student = course.find_student(id);
@@ -93,7 +79,7 @@ void handle_final_media(Curso& course){
     }
 
     float final_media = student->calculate_final_media();
-    student->display_courses();
+    student->setfinalmedia();
 }
 
 void handle_capacity(Curso& course){
