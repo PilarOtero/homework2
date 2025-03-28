@@ -1,6 +1,7 @@
-#include "curso.h"
+#include "methods.cpp"
 #include <string>
 #include <iostream>
+using namespace std;
 
 string student_name(){
     string fullname;
@@ -79,7 +80,7 @@ void handle_final_media(Curso& course){
     }
 
     float final_media = student->calculate_final_media();
-    student->setfinalmedia();
+    student->display_finalmedia();
 }
 
 void handle_capacity(Curso& course){
