@@ -7,8 +7,7 @@ using namespace std;
 void askHour(int &hour){
     cout << "Ingrese la hora\n>> ";
     string input;
-    cin >> input;
-    cin.ignore();
+    getline(cin, input);
     
     hour = stoi(input);
 
@@ -26,7 +25,7 @@ void askSeconds(int &seconds){
     cout << "Ingrese los segundos\n>> ";
     string input;
     getline(cin, input);
-    cin.ignore();
+
     seconds = stoi(input);
 }
 
@@ -51,6 +50,7 @@ void ask_clock(int &h, int &m, bool with_minutes, int &s, bool with_seconds, str
 
     switch(option){
         case static_cast<int>(Options2:: clock12hs):
+            time = Time(h,m,s,p);
             time.display_12hs_time();
             time.display_hour();
             if (with_minutes) time.display_minutes();
@@ -73,7 +73,6 @@ void ask_clock(int &h, int &m, bool with_minutes, int &s, bool with_seconds, str
 void handle_h(int &h){
     Time time;
     string option;
-    int option2;
     int m = 0, s = 0;
     string p = "a.m";
     
@@ -88,25 +87,12 @@ void handle_h(int &h){
         time = Time(h);
     }
 
-    cout << "En que formato desea ver la hora?\n 1- Reloj de 12h\n 2- Reloj de 24 hs\n >>";
-    cin >> option2;
-
-    switch(option2){
-        case static_cast<int>(Options2:: clock12hs):
-            time.display_12hs_time();
-            time.display_hour();
-            break;
-        case static_cast<int>(Options2:: clock24hs):
-            time.display_24hs_time();
-            time.display_hour();
-            break;
-    }
+    ask_clock(h,m,false,s,false,p,false);
 }
 
 void handle_hm(int &h, int &m){
     Time time;
     string option;
-    int option2;
     int s = 0;
     string p = "a.m";
 
@@ -121,33 +107,13 @@ void handle_hm(int &h, int &m){
         time = Time(h,m);
     }
 
-    cout << "En que formato desea ver la hora?\n 1- Reloj de 12h\n 2- Reloj de 24 hs\n >>";
-    cin >> option2;
-
-    switch(option2){
-        case static_cast<int>(Options2:: clock12hs):
-            time.display_12hs_time();
-            
-            time.display_hour();
-            time.display_minutes();
-            
-            break;
-
-        case static_cast<int>(Options2:: clock24hs):
-            time.display_24hs_time();
-
-            time.display_hour();
-            time.display_minutes();
-
-            break;
-    }
+    ask_clock(h,m,true,s,false,p,false);
 
 }
 
 void handle_hms(int &h, int &m, int &s){
     Time time;
     string option;
-    int option2;
     string p = "a.m";
 
     askTime(h,m,true,s,true,p, false);
@@ -161,27 +127,7 @@ void handle_hms(int &h, int &m, int &s){
         time = Time(h,m,s);
     }
 
-    cout << "En que formato desea ver la hora?\n 1- Reloj de 12h\n 2- Reloj de 24 hs\n >>";
-    cin >> option2;
-
-    switch(option2){
-        case static_cast<int>(Options2:: clock12hs):
-            time.display_12hs_time();
-            time.display_hour();
-            time.display_minutes();
-            time.display_seconds();
-
-            break;
-
-        case static_cast<int>(Options2:: clock24hs):
-            time.display_24hs_time();
-
-            time.display_hour();
-            time.display_minutes();
-            time.display_seconds();
-
-            break;
-    }
+    ask_clock(h,m,true,s,true,p,false);
 
 }
 
