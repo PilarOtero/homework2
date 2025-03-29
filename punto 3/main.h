@@ -8,12 +8,11 @@ class Numero {
     public:
         virtual ~Numero() = default;
 
-        //Paso los valores con los que se va a hacer la operacion por referencia
-        virtual Numero* sum(const Numero& other);
-        virtual Numero* subtraction(const Numero& other);
-        virtual Numero* product(const Numero& other);
+        virtual Numero* sum(const Numero& other) = 0;
+        virtual Numero* subtraction(const Numero& other) = 0;
+        virtual Numero* product(const Numero& other) = 0;
 
-        virtual string toString();
+        virtual string toString() = 0;
 };
 
 class Entero: public Numero{
@@ -28,7 +27,6 @@ class Entero: public Numero{
         Numero* sum(const Numero& other) override;
         Numero* product(const Numero& other) override;
         Numero* subtraction(const Numero& other) override;
-
         string toString() override;
 }; 
 
@@ -44,7 +42,6 @@ class Real: public Numero{
         Numero* sum(const Numero& other) override;
         Numero* product(const Numero& other) override;
         Numero* subtraction(const Numero& other) override;
-
         string toString() override;
 
 };
@@ -63,8 +60,21 @@ class Complejo: public Numero{
         Numero* sum(const Numero& other) override;
         Numero* product(const Numero& other) override;
         Numero* subtraction(const Numero& other) override;
-
         string toString() override;
 
 };
+
+enum class Options{
+    enteros = 1,
+    reales,
+    complejos,
+};
+
+enum class Options2{
+    sum = 1,
+    subtraction,
+    product,
+    OUT,
+};
+
 #endif

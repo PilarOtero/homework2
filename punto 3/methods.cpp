@@ -1,5 +1,6 @@
 #include "main.h"
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -84,4 +85,16 @@ Numero* Complejo:: subtraction(const Numero& other){
 }
 
 //Metodo toString
-//string Complejo:: toString(){}
+string Complejo:: toString(){
+    ostringstream oss;
+    oss << re;
+
+    if (im >= 0){
+        oss << "+" << im << "i";
+    }
+    else{
+        oss << "-" << abs(im) << "i";;
+    }
+    
+    return oss.str();
+}
