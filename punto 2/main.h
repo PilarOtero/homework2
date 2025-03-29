@@ -15,6 +15,7 @@ class Estudiante{
 
         string fullname; 
         int identification;
+        float grade;
         vector<float> grades;
         float final_media; //Promedio final
 
@@ -27,6 +28,9 @@ class Estudiante{
         string get_name();
         int get_id();
         float get_final_media();
+
+        //Setter
+        bool setgrade(float grade);
 
         //Metodos
         void add_grade(float grade);

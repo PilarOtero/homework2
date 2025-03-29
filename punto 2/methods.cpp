@@ -6,7 +6,7 @@ using namespace std;
 
 //CLASE ESTUDIANTE
 
-//constructor 
+//Constructor 
 Estudiante:: Estudiante(string n, int id){
     fullname = n;
     identification = id;
@@ -19,9 +19,24 @@ string Estudiante::get_name() { return fullname; }
 int Estudiante::get_id() { return identification; }
 float Estudiante::get_final_media() {return final_media; }
 
+//Setter
+bool Estudiante:: setgrade(float grade){
+    if (grade <= 10 && grade >= 1){
+        grade = grade;
+        return true;
+    }
+    return false;
+}
+
 //Metodo para agregar una nota a un curso
 void Estudiante::add_grade(float grade) {   
-    grades.push_back(move(grade));
+    if (setgrade(grade)){
+        grades.push_back(move(grade));
+        cout << "Calificacion agregada exitosamente." << endl;
+    }
+    else{
+        cout << "Calificacion invalida." << endl;
+    }
 }
 
 //Metodo para calcular el promedio
