@@ -209,6 +209,9 @@ void handle_options(Options2 operation){
                 handle_complejos_product();
             }
             break;
+        default:
+            cout << "Opcion invalida. " << endl;
+            break;
     }
 }
 

@@ -16,6 +16,14 @@ class BankAccount{
         //Constructor
         BankAccount(string owner, double balance);
         
+        //Getter
+        double get_balance();
+        string get_owner();
+        void get_info();
+
+        //Setter
+        void set_balance(double balance);
+
         //Metodos
         virtual void deposit() = 0;
         virtual void extract() = 0;
@@ -24,12 +32,8 @@ class BankAccount{
 
 class CajadeAhorro: public BankAccount{
     private:
-        double balance;
         int quantity_display = 0;
         void display_info() override;
-    
-    protected:
-        string owner;
     
         public:
         //Constructor
@@ -45,11 +49,8 @@ class CuentaCorriente: public BankAccount{
     friend class CajadeAhorro;
 
     private:
-        double balance;
         void display_info() override;
 
-    public:
-        string owner;
 
     public:
         //Constructor
@@ -61,13 +62,13 @@ class CuentaCorriente: public BankAccount{
 };
 
 enum class Options{
-    cuentacorriente,
+    cuentacorriente = 1,
     cajadeahorro,
     OUT
 };
 
 enum class Options2{
-    deposit,
+    deposit = 1,
     extract,
     info,
 };

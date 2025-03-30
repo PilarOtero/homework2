@@ -67,6 +67,10 @@ void ask_clock(int &h, int &m, bool with_minutes, int &s, bool with_seconds, str
             if (with_seconds) time.display_seconds();
 
             break;
+        
+        default:
+            cout << "Opcion invalida." << endl;
+            break;
     }
 }
 

@@ -3,21 +3,6 @@
 
 using namespace std;
 
-string ask_owner(){
-    string owner;
-    cout << "Ingrese el nombre del titular de la cuenta>> ";
-    cin >> owner;
-
-    return owner;
-}
-
-double ask_initial_balance(){
-    double initial_balance;
-    cout << "Ingres el balance inicial de la cuenta>> ";
-    cin >> initial_balance;
-
-    return initial_balance;
-}
 
 void handle_options(Options cuentaocaja){
     string owner = ask_owner();
@@ -39,6 +24,7 @@ void handle_options(Options cuentaocaja){
             else if (cuentaocaja == Options:: cajadeahorro){
                 caja.deposit();
             }
+            break;
 
         case static_cast<int>(Options2::extract):
             if (cuentaocaja == Options:: cuentacorriente){
@@ -47,13 +33,20 @@ void handle_options(Options cuentaocaja){
             else if (cuentaocaja == Options:: cajadeahorro){
                 caja.extract();
             }
+            break;
+
         case static_cast<int>(Options2::info):
             if (cuentaocaja == Options:: cuentacorriente){
-                cuenta.display_info();
+                cuenta.get_info();
             }
             else if (cuentaocaja == Options:: cajadeahorro){
-                caja.display_info();
+                caja.get_info();
             }
+            break;
+        default:
+            cout << "Opcion invalida." << endl;
+            break;
+    
     }
 
 }
