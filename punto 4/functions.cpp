@@ -1,23 +1,7 @@
-#include "main.h"
+#include "methods.cpp"
 #include <iostream>
 
 using namespace std;
-
-double ask_money_sum(){
-    double money;
-    cout << "Ingrese la suma de dinero sobre la que se realizara la operacion>> ";
-    cin >> money;
-    
-    return money;
-}
-
-bool set_money(double money){
-    if (money > 0) return true;
-    else{
-        cout << "La suma de dinero debe ser positiva" << endl;
-        return false;
-    }
-}
 
 string ask_owner(){
     string owner;
@@ -35,83 +19,41 @@ double ask_initial_balance(){
     return initial_balance;
 }
 
-//CLASE BANKACCOUNT
-//Constructor
-BankAccount:: BankAccount(string owner, double balance): balance(balance), owner(owner) {}
-      
+void handle_options(Options cuentaocaja){
+    string owner = ask_owner();
+    double initial_balance = ask_initial_balance();
 
-//CLASE CAJA DE AHORRO
-//Constructor
-CajadeAhorro:: CajadeAhorro(string owner, double balance): BankAccount(owner, balance){}
+    CuentaCorriente cuenta(owner, initial_balance);
+    CajadeAhorro caja(owner, initial_balance);
 
-//Metodo para mostrar la informacion de la cuenta
-void CajadeAhorro:: display_info(){
-    quantity_display ++;
-    if (quantity_display > 2){
-        balance -=20;
+    int option;
+
+    cout << "Ingrese la operacion a realizar\n 1. Depositar dinero\n 2. Extraer dinero\n 3. Ver informacion de la cuenta." << endl;
+    cin >>option;
+
+    switch(option){
+        case static_cast<int>(Options2::deposit):
+            if (cuentaocaja == Options:: cuentacorriente){
+                cuenta.deposit();
+            }
+            else if (cuentaocaja == Options:: cajadeahorro){
+                caja.deposit();
+            }
+
+        case static_cast<int>(Options2::extract):
+            if (cuentaocaja == Options:: cuentacorriente){
+                cuenta.extract();
+            }
+            else if (cuentaocaja == Options:: cajadeahorro){
+                caja.extract();
+            }
+        case static_cast<int>(Options2::info):
+            if (cuentaocaja == Options:: cuentacorriente){
+                cuenta.display_info();
+            }
+            else if (cuentaocaja == Options:: cajadeahorro){
+                caja.display_info();
+            }
     }
-    cout << "TITULAR CUENTA CORRIENTE:" << owner << "\nBALANCE: " << balance << endl;
+
 }
-
-//Metodo de deposito
-void CajadeAhorro:: deposit(){
-    double deposit = ask_money_sum();
-    if (set_money(deposit)){
-        balance += deposit;
-        cout << "El deposito de " << deposit << "pesos se ha realizado correctamente" << endl;
-    }
-}
-
-//Metodo de extraccion
-void CajadeAhorro:: extract(){
-    double extraction = ask_money_sum();
-    if(set_money(extraction)){
-        if (balance >= extraction){
-            balance -= extraction;
-            cout << "Se retiraron " << extraction << "pesos exitosamente" << endl;
-        }
-    }
-    else{
-        cout << "Fondos insuficientes en Caja de Ahorro." << endl;
-    }
-}
-
-
-//CLASE CUENTA CORRIENTE
-//Constructor
-CuentaCorriente:: CuentaCorriente(string owner, double balance): BankAccount(owner, balance) {}
-
-//Metodo para mostrar la informacion de la cuenta
-void CuentaCorriente:: display_info(){
-    cout << "TITULAR CUENTA CORRIENTE:" << owner << "\nBALANCE: " << balance << endl;
-} 
-
-//Metodo de deposito
-void CuentaCorriente:: deposit(){
-    double deposit = ask_money_sum();
-    if (set_money(deposit)){
-        balance += deposit;
-        cout << "El deposito de " << deposit << "pesos se ha realizado correctamente" << endl;
-    }
-}
-
-//Metodo de retiro
-void CuentaCorriente:: extract(){
-    double extraction = ask_money_sum();
-    if(set_money(extraction)){
-        if (balance >= extraction){
-            balance -= extraction;
-            cout << "Se retiraron " << extraction << "pesos exitosamente" << endl;
-        }
-    }
-    else{
-        cout << "Fondos insuficientes en Cuenta Corriente. Se intentara extraer de la Caja de Ahorro." << endl;
-        CajadeAhorro* saved_money = new CajadeAhorro(owner,balance);
-        saved_money->extract();
-
-        delete saved_money;
-    }
-}
-
-
-

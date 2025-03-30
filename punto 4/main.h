@@ -60,4 +60,16 @@ class CuentaCorriente: public BankAccount{
         void extract() override;
 };
 
+enum class Options{
+    cuentacorriente,
+    cajadeahorro,
+    OUT
+};
+
+enum class Options2{
+    deposit,
+    extract,
+    info,
+};
+
 #endif
