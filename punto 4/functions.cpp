@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 void handle_options(Options cuentaocaja){
     string owner = ask_owner();
     double initial_balance = ask_initial_balance();

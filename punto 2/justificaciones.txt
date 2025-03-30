@@ -1,4 +1,6 @@
 PUNTO 2C
 
-Las clases Curso y Estudiante mantienen una relacion de ASOCIACION -> ambas trabajan juntas con un objetivo en comun. Esto implica que estan 
-fuertemente asociados, interactuan, pero no tienen ownership del otro, ni influyen en el ciclo de vida del otro.
+Las clases Curso y Estudiante mantienen una relacion de AGREGACION -> al ser consideradas como un "todo" (el curso) y sus "partes" (estudiantes).
+Podria considerarse como un caso analogo al de una biblioteca y sus libros (todo y partes respectivamente).
+Tambien se puede hablar de una relacion de ASOCIACION -> ambas trabajan juntas con un objetivo en comun, lo que implica que estan  fuertemente asociadas, interactuan, pero no tienen ownership del otro, 
+ni influyen en el ciclo de vida.

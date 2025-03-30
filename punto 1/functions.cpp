@@ -1,6 +1,6 @@
 #include <fstream>
 #include <iostream>
-#include "time.cpp"
+#include "methods.cpp"
 
 using namespace std;
 
