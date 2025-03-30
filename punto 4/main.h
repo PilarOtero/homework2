@@ -50,11 +50,12 @@ class CuentaCorriente: public BankAccount{
 
     private:
         void display_info() override;
+        CajadeAhorro * cajadeahorro;
 
 
     public:
         //Constructor
-        CuentaCorriente(string owner, double balance);
+        CuentaCorriente(string owner, double balance, CajadeAhorro* caja);
 
         //Metodos 
         void deposit() override;
@@ -64,7 +65,7 @@ class CuentaCorriente: public BankAccount{
 enum class Options{
     cuentacorriente = 1,
     cajadeahorro,
-    OUT
+    OUT,
 };
 
 enum class Options2{

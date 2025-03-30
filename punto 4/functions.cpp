@@ -3,16 +3,17 @@
 
 using namespace std;
 
-void handle_options(Options cuentaocaja){
-    string owner = ask_owner();
-    double initial_balance = ask_initial_balance();
+bool handle_options(Options cuentaocaja){
+    string owner = "Juan Tomatis";
+    double initial_balance_caja = 200000;
+    double initial_balance_cuenta = 180000;
 
-    CuentaCorriente cuenta(owner, initial_balance);
-    CajadeAhorro caja(owner, initial_balance);
+    CajadeAhorro caja(owner, initial_balance_caja);
+    CuentaCorriente cuenta(owner, initial_balance_cuenta, &caja);
 
     int option;
 
-    cout << "Ingrese la operacion a realizar\n 1. Depositar dinero\n 2. Extraer dinero\n 3. Ver informacion de la cuenta." << endl;
+    cout << "\nIngrese la operacion a realizar\n 1. Depositar dinero\n 2. Extraer dinero\n 3. Ver informacion de la cuenta\n" << endl;
     cin >>option;
 
     switch(option){
@@ -42,10 +43,11 @@ void handle_options(Options cuentaocaja){
                 caja.get_info();
             }
             break;
+
         default:
             cout << "Opcion invalida." << endl;
             break;
     
     }
-
+    return false;
 }

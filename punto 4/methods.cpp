@@ -18,21 +18,6 @@ bool set_money(double money){
         return false;
     }
 }
-string ask_owner(){
-    string owner;
-    cout << "Ingrese el nombre del titular de la cuenta>> ";
-    cin >> owner;
-
-    return owner;
-}
-
-double ask_initial_balance(){
-    double initial_balance;
-    cout << "Ingres el balance inicial de la cuenta>> ";
-    cin >> initial_balance;
-
-    return initial_balance;
-}
 
 //CLASE BANKACCOUNT
 //Constructor
@@ -55,11 +40,12 @@ CajadeAhorro:: CajadeAhorro(string owner, double balance): BankAccount(owner, ba
 //Metodo para mostrar la informacion de la cuenta
 void CajadeAhorro:: display_info(){
     quantity_display ++;
-    double balance = get_balance();
     if (quantity_display > 2){
-        balance -=20;
+        double new_balance = get_balance() - 20;
+        set_balance(new_balance);
+
     }
-    cout << "TITULAR CUENTA CORRIENTE: " << owner << "\nBALANCE: $" << balance << endl;
+    cout << "TITULAR CAJA DE AHORRO: " << owner << "\nBALANCE: $" << get_balance() << endl;
 }
 
 //Metodo de deposito
@@ -67,7 +53,7 @@ void CajadeAhorro:: deposit(){
     double deposit = ask_money_sum();
     if (set_money(deposit)){
         set_balance(get_balance() + deposit);
-        cout << "El deposito de $" << deposit << " se ha realizado correctamente.\nDINERO EN CUENTA: $" << get_balance() << endl;
+        cout << "El deposito de $" << deposit << " se ha realizado correctamente.\nDINERO EN CAJA DE AHORRO: $" << get_balance() << endl;
     }
     else{
         cout << "No se pudo realizar la operacion" << endl;
@@ -80,7 +66,7 @@ void CajadeAhorro:: extract(){
     if(set_money(extraction)){
         if (get_balance() >= extraction){
             set_balance(get_balance() - extraction);
-            cout << "Se retiraron $" << extraction << " exitosamente.\nDINERO EN CUENTA: $" << get_balance() << endl;
+            cout << "Se retiraron $" << extraction << " exitosamente.\nDINERO EN CAJA DE AHORRO: $" << get_balance() << endl;
         }
     }
     else{
@@ -91,7 +77,7 @@ void CajadeAhorro:: extract(){
 
 //CLASE CUENTA CORRIENTE
 //Constructor
-CuentaCorriente:: CuentaCorriente(string owner, double balance): BankAccount(owner, balance) {}
+CuentaCorriente:: CuentaCorriente(string owner, double balance, CajadeAhorro* caja): BankAccount(owner, balance), cajadeahorro(caja){};
 
 //Metodo para mostrar la informacion de la cuenta
 void CuentaCorriente:: display_info(){
@@ -120,13 +106,17 @@ void CuentaCorriente:: extract(){
         }
 
         else {
-            //VER ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
             cout << "Fondos insuficientes en Cuenta Corriente. Se intentara extraer de la Caja de Ahorro.\n" << endl;
             
-            CajadeAhorro* saved_money = new CajadeAhorro(owner,get_balance());
-            saved_money->extract();
-    
-            delete saved_money;
+            if (cajadeahorro != nullptr){
+                if (cajadeahorro->get_balance() >= extraction){
+                    cajadeahorro->extract();
+                }
+            }
+            else {
+                cout << "No hay Caja de Ahorro asociada a esta Cuenta corriente" << endl;
+            } 
+
         }
     }
 }
