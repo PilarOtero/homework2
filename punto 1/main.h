@@ -14,6 +14,7 @@ class Time {
 
     public:
 
+        //Metodo para validar el tiempo
         bool validate_time (int h, int m, int s, string period);
              
         //Setters

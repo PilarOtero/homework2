@@ -55,14 +55,7 @@ class Curso {
         SHALLOW COPY de la clase Curso -> utilice un vector de shared pointers para representar a los alumnos, de manera que cualquier 
         modificacion en los atributos de estos punteros, se reflejara en todos los cursos.
         */ 
-        Curso& operator= (const Curso& other){
-            //Compruebo que la asignacion no apunta a la clase sobre la que estoy trabajando 
-            if (this != &other){
-                name = other.name;  
-                students = other.students;
-            }
-            return *this;
-        }
+        Curso& operator= (const Curso& other);
 
         //Metodos
         void add_student(shared_ptr<Estudiante> student);

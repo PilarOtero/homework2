@@ -4,7 +4,6 @@ int main(){
     int option, id;
     string student_fullname;
     Curso course1;
-    Curso course2;
     map<string, float> grades;
     float grade, final_media;
     shared_ptr<Estudiante> student;

@@ -75,6 +75,15 @@ Curso:: Curso(string course_name, const vector<shared_ptr<Estudiante>>& class_st
     students = class_students;
 }
 
+Curso& Curso:: operator= (const Curso& other){
+    //Compruebo que la asignacion no apunta a la clase sobre la que estoy trabajando 
+    if (this != &other){
+        name = other.name;  
+        students = other.students;
+    }
+    return *this;
+}
+
 //Metodo para agregar al estudiante al final del vector
 void Curso:: add_student(shared_ptr<Estudiante> student){
     students.push_back(move(student));

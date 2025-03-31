@@ -17,6 +17,7 @@ bool handle_options(Options cuentaocaja){
     cin >>option;
 
     switch(option){
+        //Dentro de cada switch, opero sobre el menu interactivo que se desprende para cada opcion.
         case static_cast<int>(Options2::deposit):
             if (cuentaocaja == Options:: cuentacorriente){
                 cuenta.deposit();

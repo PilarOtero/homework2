@@ -7,6 +7,7 @@ using namespace std;
 int main(){
     int option;
 
+    //Dentro de cada opcion elegida, se despliega un nuevo menu 
     cout << "--MENU--\nElija la operacion a realizar\n 1. Suma\n 2. Resta\n 3. Producto\n 4. OUT" << endl;
     cout << ">>";
     cin >> option;

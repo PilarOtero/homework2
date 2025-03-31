@@ -1,6 +1,7 @@
 #include "methods.cpp"
 #include <iostream>
 
+//Ingresar el numero Entero
 int askEntero(){
     int number;
     cout << "Ingrese el numero: ";
@@ -9,6 +10,7 @@ int askEntero(){
     return number;
 }
 
+//Ingresar el numero Real
 double askReal(){
     double number;
     cout << "Ingrese el numero: ";
@@ -17,6 +19,9 @@ double askReal(){
     return number;
 }
 
+
+//CLASE ENTEROS
+//Suma de Enteros
 void handle_enteros_sum(){
     int number1 = askEntero();
     int number2 = askEntero();
@@ -31,6 +36,7 @@ void handle_enteros_sum(){
     delete result;
 }
 
+//Resta de Enteros
 void handle_enteros_subtraction(){
     int number1 = askEntero();
     int number2 = askEntero();
@@ -45,6 +51,7 @@ void handle_enteros_subtraction(){
     delete result;
 }
 
+//Producto de Enteros
 void handle_enteros_product(){
     int number1 = askEntero();
     int number2 = askEntero();
@@ -59,6 +66,9 @@ void handle_enteros_product(){
     delete result;
 }
 
+
+//CLASE REALES
+//Suma de Reales
 void handle_reales_sum(){
     double number1 = askReal();
     double number2 = askReal();
@@ -73,6 +83,7 @@ void handle_reales_sum(){
     delete result;
 }
 
+//Resta de Reales
 void handle_reales_subtraction(){
     double number1 = askReal();
     double number2 = askReal();
@@ -87,6 +98,7 @@ void handle_reales_subtraction(){
     delete result;
 }
 
+//Producto de Reales
 void handle_reales_product(){
     double number1 = askReal();
     double number2 = askReal();
@@ -101,12 +113,19 @@ void handle_reales_product(){
     delete result;
 }
 
+
+//CLASE COMPLEJOS 
+//Aprovechando que las partes Real e Imaginaria de los Complejos pertenecen a los Reales, utilizo la funcion askReal()
+
+//Suma de Complejos
 void handle_complejos_sum(){
+    //Numero 1
     cout << "VALOR1\nParte Real>> ";
     double re1 = askReal();
     cout << "Parte Imaginaria>> ";
     double im1 = askReal();
 
+    //Numero 2
     cout << "VALOR2\nParte Real>> ";
     double re2 = askReal();
     cout << "Parte Imaginaria>> ";
@@ -122,13 +141,15 @@ void handle_complejos_sum(){
     delete result;
 }
 
-
+//Resta de Complejos
 void handle_complejos_subtraction(){
+    //Numero 1
     cout << "VALOR1\nIngrese la parte Real>> ";
     double re1 = askReal();
     cout << "Ingrese la parte Imaginaria>> ";
     double im1 = askReal();
 
+    //Numero 2
     cout << "VALOR2\nIngrese la parte Real>> ";
     double re2 = askReal();
     cout << "Ingrese la parte Imaginaria>> ";
@@ -144,13 +165,15 @@ void handle_complejos_subtraction(){
     delete result;
 }
 
-
+//Producto de Complejos
 void handle_complejos_product(){
+    //Numero 1
     cout << "VALOR1\nIngrese la parte Real>> ";
     double re1 = askReal();
     cout << "Ingrese la parte Imaginaria>> ";
     double im1 = askReal();
 
+    //Numero 2
     cout << "VALOR2\nIngrese la parte Real>> ";
     double re2 = askReal();
     cout << "Ingrese la parte Imaginaria>> ";

@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+//Ingreso del nombre del estudiante
 string student_name(){
     string fullname;
     cout << "Ingrese el nombre del estudiante \n>> " << endl;
@@ -11,6 +12,7 @@ string student_name(){
     return fullname;
 }
 
+//Ingreso del legajo del estudiante
 int student_id(){
     int id;
     cout << "Ingrese el numero de legajo\n>> " << endl;
@@ -18,6 +20,8 @@ int student_id(){
 
     return id;
 }
+
+//Ingreso de la cantidad de calificaciones del estudiante
 int grades(){
     int grades;
     cout << "Ingrese la cantidad de notas" << endl;
@@ -25,6 +29,7 @@ int grades(){
     return grades;
 }
 
+//Ingreso de las calificaciones del estudiante
 float ask_grade(){
     float grade; 
     
@@ -41,14 +46,17 @@ void handle_adding_student(Curso& course){
     string student_fullname = student_name();
     int id = student_id();
 
+    //Si se encuentra al alumno en el curso, no es necesario inscribirlo nuevamente
     if (course.find_student(id)){
         cout << "El estudiante ya esta inscripto en el curso." << endl;
     }
 
+    //Crea al estudiante y se agrega al curso
     shared_ptr<Estudiante> student = make_shared<Estudiante>(student_fullname, id);
     course.add_student(student);
     cout << "El alumno " << student_fullname<< " ha sido inscripto correctamente." << endl;
 
+    //Ingreso de las calificaciones
     int n = grades();
     for (int i = 0; i < n; i ++){
         float grade = ask_grade();
@@ -57,7 +65,7 @@ void handle_adding_student(Curso& course){
     
 }
 
-
+//Funcion para eliminar un estudiante del curso
 void handle_removing_student(Curso& course){
     int id = student_id();
 
@@ -70,6 +78,7 @@ void handle_removing_student(Curso& course){
     }
 }
 
+//Calculo del promedio final del estudiante
 void handle_final_media(Curso& course){
     int id = student_id();
     const shared_ptr<Estudiante> student = course.find_student(id);
@@ -83,10 +92,12 @@ void handle_final_media(Curso& course){
     student->display_finalmedia();
 }
 
+//Capacidad del curso
 void handle_capacity(Curso& course){
     course.capacity();
 }
 
+//Busqueda de alumno por legajo
 void handle_searching_student(Curso& course){
     int id = student_id();
     if (course.find_student(id)){
@@ -94,6 +105,7 @@ void handle_searching_student(Curso& course){
     }
 }
 
+//Muestra del listado de estudiantes inscriptos
 void handle_students_list(Curso& course){
     course.display_students();
 }
