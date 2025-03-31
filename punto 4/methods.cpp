@@ -72,10 +72,10 @@ void CajadeAhorro:: extract(){
 
 //Metodo para mostrar la informacion de la cuenta
 void CajadeAhorro:: display_info(){
+    quantity_display ++;
     if (quantity_display > 2){
         set_balance(get_balance() - 20);
     }
-    quantity_display ++;
     cout << "TITULAR CAJA DE AHORRO: " << owner << "\nBALANCE: $" << get_balance() << endl;
 }
 
