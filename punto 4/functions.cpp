@@ -38,10 +38,10 @@ bool handle_options(Options cuentaocaja){
 
         case static_cast<int>(Options2::info):
             if (cuentaocaja == Options:: cuentacorriente){
-                cuenta.get_info();
+                cuenta.display_info();
             }
             else if (cuentaocaja == Options:: cajadeahorro){
-                caja.get_info();
+                caja.display_info();
             }
             break;
 

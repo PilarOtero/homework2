@@ -28,7 +28,6 @@ BankAccount:: BankAccount(string owner, double balance): balance(balance), owner
 //Getters
 double BankAccount:: get_balance() {return balance; }
 string BankAccount:: get_owner() {return owner; }
-void BankAccount:: get_info(){display_info();}
 
 //Setter
 void BankAccount:: set_balance(double new_balance) {
