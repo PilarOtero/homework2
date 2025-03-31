@@ -3,7 +3,7 @@
 int main(){
     int option;
 
-        cout << "--MENU--\n 1. Operar sobre Cuenta Corriente\n 2. Operar sobre Caja de Ahorro\n 3. OUT" << endl;
+        cout << "--MENÚ--\n 1. Operar sobre Cuenta Corriente\n 2. Operar sobre Caja de Ahorro\n 3. OUT" << endl;
         cin >> option;
         
         switch(option){
@@ -17,7 +17,7 @@ int main(){
                 cout << "Cerrando programa..." << endl;
                 return false;
             default:
-                cout << "Opcion invalida. Ingrese nuevamente." << endl;
+                cout << "Opción inválida. Ingrese nuevamente." << endl;
         }
 }
 

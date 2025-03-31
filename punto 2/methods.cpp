@@ -28,18 +28,18 @@ bool Estudiante:: setgrade(float grade){
     return false;
 }
 
-//Metodo para agregar una nota a un curso
+//Método para agregar una nota a un curso
 void Estudiante::add_grade(float grade) {   
     if (setgrade(grade)){
         grades.push_back(move(grade));
-        cout << "Calificacion agregada exitosamente." << endl;
+        cout << "Calificación agregada exitosamente." << endl;
     }
     else{
-        cout << "Calificacion invalida." << endl;
+        cout << "Calificación invalida." << endl;
     }
 }
 
-//Metodo para calcular el promedio
+//Método para calcular el promedio
 float Estudiante:: calculate_final_media(){
     if (grades.empty()){
         final_media = 0.0;
@@ -55,7 +55,7 @@ float Estudiante:: calculate_final_media(){
     return final_media;
 }
 
-//Metodo para mostrar el promedio final
+//Método para mostrar el promedio final
 void Estudiante:: display_finalmedia(){
     cout << "PROMEDIO FINAL - ESTUDIANTE: " << fullname << ". (Nro de legajo: " << identification << ")\n";
     cout << "Promedio general: " << final_media << endl;
@@ -65,7 +65,6 @@ void Estudiante:: display_finalmedia(){
 //CLASE CURSO
 
 //Constructores
-
 //Constructor sin parametros
 Curso:: Curso(): name(" ") {};
 
@@ -84,12 +83,12 @@ Curso& Curso:: operator= (const Curso& other){
     return *this;
 }
 
-//Metodo para agregar al estudiante al final del vector
+//Método para agregar al estudiante al final del vector
 void Curso:: add_student(shared_ptr<Estudiante> student){
     students.push_back(move(student));
 }
 
-//Metodo para eliminar estudiantes
+//Método para eliminar estudiantes
 void Curso:: remove_student(int id){
     //Uso iteradores para recorrer la lista y poder utilizar la funcion erase
     for (auto it = students.begin(); it != students.end(); ++it){
@@ -101,7 +100,7 @@ void Curso:: remove_student(int id){
     }
 }
 
-//Metodo para encontrar al estudiante cuyo legajo sea el ingresado
+//M´wtodo para encontrar al estudiante cuyo legajo sea el ingresado
 shared_ptr<Estudiante> Curso:: find_student(int identification){
     for (const auto& student: students){
         if (student->get_id() == identification){
@@ -111,26 +110,26 @@ shared_ptr<Estudiante> Curso:: find_student(int identification){
     return nullptr;
 }
 
-//Metodo para ver la capacidad del curso
+//Método para ver la capacidad del curso
 bool Curso::capacity (){
     if (students.size() == 20){
-        cout << "El curso esta completo." << endl;
+        cout << "El curso está completo." << endl;
         return true;
     }
 
-    cout << "El curso tiene " << students.size() << " estudiante(s). Aun tiene capacidad para " << 20 - students.size() << " alumnos mas. " << endl;
+    cout << "El curso tiene " << students.size() << " estudiante(s). Aún tiene capacidad para " << 20 - students.size() << " alumnos más. " << endl;
     return false;
 }
 
-//Metodo para ordenar a los estudiantes de la A a la Z
+//Método para ordenar a los estudiantes de la A a la Z
 bool Curso::sort_students(const shared_ptr<Estudiante> student1, const shared_ptr<Estudiante> student2){
     return student1->get_name() < student2->get_name();
 }
 
-//Metodo para mostrar listado de alumnos
+//Método para mostrar listado de alumnos
 void Curso::display_students(){
     if (students.empty()){
-        cout << "El curso esta vacio" << endl;
+        cout << "El curso está vacío" << endl;
         return;
     }
     

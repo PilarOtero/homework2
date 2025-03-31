@@ -6,7 +6,7 @@ using namespace std;
 double ask_money_sum(){
     //Permito al usuario ingresar el dinero (ya sea para depositar o extraer)
     double money;
-    cout << "Ingrese la suma de dinero sobre la que se realizara la operacion>> ";
+    cout << "Ingrese la suma de dinero sobre la que se realizará la operación>> ";
     cin >> money;
     
     return money;
@@ -46,10 +46,10 @@ void CajadeAhorro:: deposit(){
     //Verifico que la cantidad ingresada sea positiva
     if (set_money(deposit)){
         set_balance(get_balance() + deposit);
-        cout << "El deposito de $" << deposit << " se ha realizado correctamente.\nDINERO EN CAJA DE AHORRO: $" << get_balance() << endl;
+        cout << "El depósito de $" << deposit << " se ha realizado correctamente.\nDINERO EN CAJA DE AHORRO: $" << get_balance() << endl;
     }
     else{
-        cout << "No se pudo realizar la operacion" << endl;
+        cout << "No se pudo realizar la operación" << endl;
     }
 }
 
@@ -92,10 +92,10 @@ void CuentaCorriente:: deposit(){
     if (set_money(deposit)){
         //Actualizo el balance
         set_balance(get_balance() + deposit);
-        cout << "El deposito de $" << deposit << " se ha realizado correctamente\nDINERO EN CUENTA: $" << get_balance()  << endl;
+        cout << "El depósito de $" << deposit << " se ha realizado correctamente\nDINERO EN CUENTA: $" << get_balance()  << endl;
     }
     else{
-        cout << "No se pudo realizar la operacion" << endl;
+        cout << "No se pudo realizar la operación" << endl;
     }
 }
 
@@ -112,7 +112,7 @@ void CuentaCorriente:: extract(){
         }
 
         else {
-            cout << "Fondos insuficientes en Cuenta Corriente. Se intentara extraer de la Caja de Ahorro.\n" << endl;
+            cout << "Fondos insuficientes en Cuenta Corriente. Se intentará extraer de la Caja de Ahorro.\n" << endl;
             //Accedo a la caja de ahorro para ver si se puede retirar el dinero de esta
             if (cajadeahorro != nullptr){
                 if (cajadeahorro->get_balance() >= extraction){
@@ -120,7 +120,7 @@ void CuentaCorriente:: extract(){
                 }
             }
             else {
-                cout << "No hay Caja de Ahorro asociada a esta Cuenta corriente" << endl;
+                cout << "No hay Caja de Ahorro asociada a esta Cuenta Corriente" << endl;
             } 
 
         }

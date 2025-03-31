@@ -23,7 +23,7 @@ class Entero: public Numero{
         //Constructor
         Entero(int value);
 
-        //Metodos
+        //Métodos
         Numero* sum(const Numero& other) override;
         Numero* product(const Numero& other) override;
         Numero* subtraction(const Numero& other) override;
@@ -38,7 +38,7 @@ class Real: public Numero{
         //Constructor
         Real(double value);
 
-        //Metodos
+        //Métodos
         Numero* sum(const Numero& other) override;
         Numero* product(const Numero& other) override;
         Numero* subtraction(const Numero& other) override;
@@ -56,7 +56,7 @@ class Complejo: public Numero{
         //Constructor
         Complejo(double re, double im);
 
-        //Metodos
+        //Métodos
         Numero* sum(const Numero& other) override;
         Numero* product(const Numero& other) override;
         Numero* subtraction(const Numero& other) override;

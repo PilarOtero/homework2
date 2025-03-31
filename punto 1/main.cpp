@@ -6,8 +6,8 @@ int main(){
     string p;
     
     while(true){
-        cout << "Ingrese la opcion deseada:\n 1- Ingresar hora\n 2- Ingresar hora y minutos\n 3- Ingresar hora minutos y segundos\n 4- Ingresar hora, minutos, segundos y periodo\n 5- OUT\n" << endl;
-        cout << "Opcion>> ";
+        cout << "Ingrese la opción deseada:\n 1- Ingresar hora\n 2- Ingresar hora y minutos\n 3- Ingresar hora minutos y segundos\n 4- Ingresar hora, minutos, segundos y período\n 5- OUT\n" << endl;
+        cout << "Opción>> ";
         cin >> option;
         cin.ignore();
         

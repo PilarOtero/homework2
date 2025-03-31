@@ -10,12 +10,12 @@ bool Time::validate_time (int h, int m, int s, string period){
     string error;
 
     if (h < 1 || h > 12) {
-        error += "Hora invalida. Debe estar entre 1 y 12.\n";
+        error += "Hora inválida. Debe estar entre 1 y 12.\n";
         isValid = false;
     }
 
     if (m < 0 || m >= 60) {
-        error += "Minutos invalidos. Deben estar entre 0 y 59.\n";
+        error += "Minutos inválidos. Deben estar entre 0 y 59.\n";
         isValid = false;
     }
 
@@ -25,11 +25,11 @@ bool Time::validate_time (int h, int m, int s, string period){
     }
 
     if (period != "a.m" && period != "p.m") {
-        error += "Periodo invalido. Debe ser 'a.m' o 'p.m'.\n";
+        error += "Período inválido. Debe ser 'a.m' o 'p.m'.\n";
         isValid = false;
     }
 
-    //Si el string error no esta vacio, hay errores. Genero un argumento invalido
+    //Si el string error no está vacío, hay errores. Genero un argumento inválido
     if (error != ""){
         throw invalid_argument(error);
     }
@@ -64,7 +64,7 @@ void Time::setperiod(string p){
 
 //Constructores 
 
-//Sin parametros
+//Sin parámetros
 Time:: Time (): hours(0), minutes(0), seconds(0), period("a.m") {}
 
 //Ingresando hora
@@ -99,13 +99,13 @@ int Time::getminutes() {return minutes; }
 int Time::getseconds(){ return seconds; }
 string Time::getperiod(){ return period; }
 
-//Metodos para visualizar los elementos por separado
+//Métodos para visualizar los elementos por separado
 void Time::display_hour(){ cout << "HORA: " << hours << "h "; }
 void Time::display_minutes(){ cout << "MINUTOS: " << minutes << "m "; }
 void Time::display_seconds(){ cout << "SEGUNDOS: " << seconds << "s "; }
 void Time::display_period(){ cout << "PERIODO: " << period << endl; }
 
-//Metodo para mostrar la hora en formato de 12hs
+//Método para mostrar la hora en formato de 12hs
 void Time::display_12hs_time(){
     //Imprimo con el formato HHh, MMm, SSs, a.m/p.m
     cout << setfill('0') << setw(2) << hours << "h";
@@ -114,7 +114,7 @@ void Time::display_12hs_time(){
     cout << " " << period << endl;
 }
 
-//Metodo para mostrar la hora en formato de 24hs
+//Método para mostrar la hora en formato de 24hs
 void Time::display_24hs_time(){
     //Defino una variable auxiliar ya que hours es un atributo de la clase
     int hours24 = hours;    

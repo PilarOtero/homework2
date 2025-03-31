@@ -14,7 +14,7 @@ class Time {
 
     public:
 
-        //Metodo para validar el tiempo
+        //Método para validar el tiempo
         bool validate_time (int h, int m, int s, string period);
              
         //Setters
@@ -36,16 +36,16 @@ class Time {
         int getseconds();
         string getperiod();
     
-        //Metodos para visualizar los elementos por separado
+        //Métodos para visualizar los elementos por separado
         void display_hour();
         void display_minutes();
         void display_seconds();
         void display_period();
     
-        //Metodo para mostrar la hora en formato de 12hs
+        //Método para mostrar la hora en formato de 12hs
         void display_12hs_time();
     
-        //Metodo para mostrar la hora en formato de 24hs
+        //Método para mostrar la hora en formato de 24hs
         void display_24hs_time();
 
 };

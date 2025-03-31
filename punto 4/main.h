@@ -20,7 +20,6 @@ class BankAccount{
         //Getter
         double get_balance();
         string get_owner();
-        void get_info();
 
         //Setter
         void set_balance(double balance);

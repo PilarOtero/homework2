@@ -40,7 +40,7 @@ float ask_grade(){
     
 }
 
-//En la funciones que estan a continuacion, paso course como parametro por referencia para que los cambios se reflejen en main
+//En la funciones que están a continuación, paso course como parámetro por referencia para que los cambios se reflejen en main
 
 void handle_adding_student(Curso& course){
     string student_fullname = student_name();
@@ -65,7 +65,7 @@ void handle_adding_student(Curso& course){
     
 }
 
-//Funcion para eliminar un estudiante del curso
+//Función para eliminar un estudiante del curso
 void handle_removing_student(Curso& course){
     int id = student_id();
 
@@ -74,11 +74,11 @@ void handle_removing_student(Curso& course){
         cout << "El alumno con numero de legajo " << id << " ha sido desinscripto correctamente." << endl;
     }
     else{ 
-    cout << "El alumno con numero de legajo " << id << " no esta inscripto en el curso" << endl; 
+    cout << "El alumno con numero de legajo " << id << " no está inscripto en el curso" << endl; 
     }
 }
 
-//Calculo del promedio final del estudiante
+//Cálculo del promedio final del estudiante
 void handle_final_media(Curso& course){
     int id = student_id();
     const shared_ptr<Estudiante> student = course.find_student(id);
@@ -97,7 +97,7 @@ void handle_capacity(Curso& course){
     course.capacity();
 }
 
-//Busqueda de alumno por legajo
+//Búsqueda de alumno por legajo
 void handle_searching_student(Curso& course){
     int id = student_id();
     if (course.find_student(id)){

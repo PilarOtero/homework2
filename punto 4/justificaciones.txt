@@ -1,0 +1,26 @@
+JUSTIFICACiÓN ELECCIÓN DE LOS ESPECIFICADORES DE ACCESO
+
+PRIVATE:
+' balance -> el balance de la Cuenta Corriente o Caja de Ahorro debe ser privado para el titular de la cuenta por la protección del usuario 
+(en el contexto de un Banco). Solo debe poder accederse en caso de estar trabajando dentro del objeto. Al ser privado evito que cualquier código 
+externo lo modifique sin haber pasado por el método que verifica el balance (set_balance())
+' quantity_display -> es un atributo de la clase Cuenta Corriente, preferible que no pueda ser modificado por alguien externo y que solo se acceda 
+dentro del objeto.
+' cajadeahorro -> es un atributo de la clase Cuenta Corriente, preferible que no pueda ser modificado por alguien externo.
+
+PROTECTED: 
+owner -> es algo privado de la clase, pero las clases derivadas, Cuenta Corriente y Caja de Ahorro pueden acceder sin necesidad de un getter.
+
+PUBLIC:
+BankAccount -> constructor de la clase por lo que debe poder accederse sin barreras
+CajadeAhorro -> constructor de la clase por lo que debe poder accederse sin barreras
+CuentaCorriente -> constructor de la clase por lo que debe poder accederse sin barreras
+
+get_balance -> permite que desde fuera se pueda acceder al balance 
+get_owner -> permite que desde fuera se pueda acceder al titular de la cuenta 
+set_balance -> permite que desde fuera se pueda modificar a raiz de las interacciones
+
+display_info -> permite que se pueda acceder a la información de la cuenta desde fuera
+
+deposit -> método virtual puro: permite que las clases derivadas hagan su propia definición. Es público para que puedan acceder 
+extract -> método virtual puro: permite que las clases derivadas hagan su propia definición. Es público para que puedan acceder 

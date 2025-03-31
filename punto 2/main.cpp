@@ -46,7 +46,7 @@ int main(){
                     return false;
 
             default:
-                cout << "Opcion invalida. Ingrese nuevamente." << endl;
+                cout << "Opción inválida. Ingrese nuevamente." << endl;
             
         }
     }

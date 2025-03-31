@@ -34,7 +34,7 @@ void askPeriod(string &p){
     cin >> p;
 }
 
-//Funcion aplicable a todos los casos (para eso sirven los booleanos: por ejemplo, si el usuario solo desea ingresar la hora, los bool son false)
+//Función aplicable a todos los casos (para eso sirven los booleanos: por ejemplo, si el usuario sólo desea ingresar la hora, los bool son false)
 void askTime(int &h, int &m, bool with_minutes, int &s, bool with_seconds, string &p, bool with_period){
     askHour(h);
     if (with_minutes) askMinutes(m);
@@ -43,7 +43,7 @@ void askTime(int &h, int &m, bool with_minutes, int &s, bool with_seconds, strin
 }
 
 void ask_clock(int &h, int &m, bool with_minutes, int &s, bool with_seconds, string &p, bool with_period){
-    //A partir de la eleccion del usuario se despliega el reloj con los datos elegidos
+    //A partir de la elección del usuario se despliega el reloj con los datos elegidos
     Time time;
     int option;
 
@@ -76,7 +76,7 @@ void ask_clock(int &h, int &m, bool with_minutes, int &s, bool with_seconds, str
     }
 }
 
-//El usuario solo ingresa la hora
+//El usuario sólo ingresa la hora
 void handle_h(int &h){
     Time time;
     string option;
@@ -97,7 +97,7 @@ void handle_h(int &h){
     ask_clock(h,m,false,s,false,p,false);
 }
 
-//El usuario solo ingresa la hora y los minutos
+//El usuario sólo ingresa la hora y los minutos
 void handle_hm(int &h, int &m){
     Time time;
     string option;
@@ -119,7 +119,7 @@ void handle_hm(int &h, int &m){
 
 }
 
-//El usuario solo ingresa la hora, los minutos y los segundos
+//El usuario sólo ingresa la hora, los minutos y los segundos
 void handle_hms(int &h, int &m, int &s){
     Time time;
     string option;
@@ -140,7 +140,7 @@ void handle_hms(int &h, int &m, int &s){
 
 }
 
-//El usuario solo ingresa la hora, los minutos, los segundos y el periodo
+//El usuario ingresa la hora, los minutos, los segundos y el período
 void handle_hmsp(int &h, int &m, int &s, string p){
     Time time;
     string option;
