@@ -75,6 +75,7 @@ enum class Options2{
     deposit = 1,
     extract,
     info,
+    OUT,
 };
 
 #endif
