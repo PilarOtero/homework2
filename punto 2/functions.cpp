@@ -97,6 +97,7 @@ void handle_capacity(Curso& course){
     course.capacity();
 }
 
+    
 //Búsqueda de alumno por legajo
 void handle_searching_student(Curso& course){
     int id = student_id();

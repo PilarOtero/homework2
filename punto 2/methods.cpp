@@ -74,11 +74,13 @@ Curso:: Curso(string course_name, const vector<shared_ptr<Estudiante>>& class_st
     students = class_students;
 }
 
+//Copiar curso
 Curso& Curso:: operator= (const Curso& other){
     //Compruebo que la asignacion no apunta a la clase sobre la que estoy trabajando 
     if (this != &other){
         name = other.name;  
         students = other.students;
+        cout << "El curso se ha copiado con exito" << endl;
     }
     return *this;
 }

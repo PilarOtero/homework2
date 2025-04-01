@@ -73,6 +73,7 @@ enum class Options{
     look4_student,
     students_list,
     capacity,
+    copy,
     OUT,
 };
 

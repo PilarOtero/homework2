@@ -4,12 +4,13 @@ int main(){
     int option, id;
     string student_fullname;
     Curso course1;
+    Curso course2;
     map<string, float> grades;
     float grade, final_media;
     shared_ptr<Estudiante> student;
 
     while (true){
-        cout << "\n-- MENU --\n 1. Inscribir alumno a curso\n 2. Desinscribir alumno\n 3. Mostrar promedio final del alumno\n 4. Buscar alumno en curso\n 5. Ver listado de alumnos\n 6. Ver capacidad del curso\n 7. OUT " << endl;
+        cout << "\n-- MENU --\n 1. Inscribir alumno a curso\n 2. Desinscribir alumno\n 3. Mostrar promedio final del alumno\n 4. Buscar alumno en curso\n 5. Ver listado de alumnos\n 6. Ver capacidad del curso\n 7. Copiar curso\n 8. OUT " << endl;
         cout << "Opcion>> ";
         cin >> option;
         cin.ignore();
@@ -40,7 +41,10 @@ int main(){
                 handle_capacity(course1);
                 break;
             
-            
+            case static_cast<int>(Options::copy):
+                course1.operator=(course2);
+                break;
+
             case static_cast<int>(Options:: OUT):
                     cout << "Cerrando programa..." << endl;
                     return false;
