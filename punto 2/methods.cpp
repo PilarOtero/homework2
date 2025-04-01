@@ -74,7 +74,7 @@ Curso:: Curso(string course_name, const vector<shared_ptr<Estudiante>>& class_st
     students = class_students;
 }
 
-//Copiar curso
+//Copiar curso usando sobrecarga del operador "="
 Curso& Curso:: operator= (const Curso& other){
     //Compruebo que la asignacion no apunta a la clase sobre la que estoy trabajando 
     if (this != &other){
