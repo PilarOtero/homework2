@@ -76,7 +76,7 @@ void handle_removing_student(Curso& course){
         cout << "El alumno con numero de legajo " << id << " ha sido desinscripto correctamente." << endl;
     }
     else{ 
-    cout << "El alumno con numero de legajo " << id << " no está inscripto en el curso" << endl; 
+        cout << "El alumno con numero de legajo " << id << " no está inscripto en el curso" << endl; 
     }
 }
 
