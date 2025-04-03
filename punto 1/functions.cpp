@@ -6,27 +6,27 @@ using namespace std;
 
 void askHour(int &hour){
     cout << "Ingrese la hora\n>> ";
-    string input;
-    getline(cin, input);
+    int input;
+    cin >> input;
     
-    hour = stoi(input);
+    hour = input;
 
 }
 
 void askMinutes(int &minutes){
     cout << "Ingrese los minutos\n>> ";
-    string input;
-    getline(cin, input);
+    int input;
+    cin >> input;
 
-    minutes = stoi(input);
+    minutes = input;
 }
 
 void askSeconds(int &seconds){
     cout << "Ingrese los segundos\n>> ";
-    string input;
-    getline(cin, input);
+    int input;
+    cin >> input;
 
-    seconds = stoi(input);
+    seconds = input;
 }
 
 void askPeriod(string &p){
