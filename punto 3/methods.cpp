@@ -30,7 +30,8 @@ Numero* Entero:: subtraction(const Numero& other){
 }
 
 //Método toString
-string Entero:: toString(){return to_string(value);}
+string Entero:: toString(){
+    return to_string(value);}
 
 
 //CLASE REALES

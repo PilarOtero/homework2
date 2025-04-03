@@ -1,6 +1,7 @@
 #include "methods.cpp"
 #include <iostream>
 
+
 //Ingresar el numero Entero
 int askEntero(){
     int number;

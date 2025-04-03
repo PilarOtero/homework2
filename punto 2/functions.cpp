@@ -48,21 +48,23 @@ void handle_adding_student(Curso& course){
 
     //Si se encuentra al alumno en el curso, no es necesario inscribirlo nuevamente
     if (course.find_student(id)){
-        cout << "El estudiante ya esta inscripto en el curso." << endl;
-    }
-
-    //Crea al estudiante y se agrega al curso
-    shared_ptr<Estudiante> student = make_shared<Estudiante>(student_fullname, id);
-    course.add_student(student);
-    cout << "El alumno " << student_fullname<< " ha sido inscripto correctamente." << endl;
-
-    //Ingreso de las calificaciones
-    int n = grades();
-    for (int i = 0; i < n; i ++){
-        float grade = ask_grade();
-        student->add_grade(grade);
+        cout << "El legajo " << id << " ya pertenece al curso." << endl;
     }
     
+    else {
+        //Crea al estudiante y se agrega al curso
+        shared_ptr<Estudiante> student = make_shared<Estudiante>(student_fullname, id);
+        course.add_student(student);
+        cout << "El alumno " << student_fullname<< " ha sido inscripto correctamente." << endl;
+
+        //Ingreso de las calificaciones
+        int n = grades();
+        for (int i = 0; i < n; i ++){
+            float grade = ask_grade();
+            student->add_grade(grade);
+        }
+    }
+ 
 }
 
 //Función para eliminar un estudiante del curso

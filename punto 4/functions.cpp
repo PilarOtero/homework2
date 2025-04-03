@@ -14,7 +14,7 @@ bool handle_options(Options cuentaocaja){
     int option;
 
     while(true){
-        cout << "\nIngrese la operación a realizar\n 1. Depositar dinero\n 2. Extraer dinero\n 3. Ver información de la cuenta\n 4. OUT\n" << endl;
+        cout << "\nIngrese la operación a realizar\n 1. Depositar dinero\n 2. Extraer dinero\n 3. Ver información de la cuenta\n 4. OUT" << endl;
         cin >>option;
 
         switch(option){
