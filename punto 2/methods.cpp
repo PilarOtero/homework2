@@ -102,7 +102,7 @@ void Curso:: remove_student(int id){
     }
 }
 
-//M´wtodo para encontrar al estudiante cuyo legajo sea el ingresado
+//Método para encontrar al estudiante cuyo legajo sea el ingresado
 shared_ptr<Estudiante> Curso:: find_student(int identification){
     for (const auto& student: students){
         if (student->get_id() == identification){
