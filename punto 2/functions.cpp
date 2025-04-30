@@ -52,11 +52,15 @@ void handle_adding_student(Curso& course){
     }
     
     else {
+        if (course.capacity() > 20){
+            cout << "No se pueden agregar mas alumnos. " << endl;
+            return;
+        }
+
         //Crea al estudiante y se agrega al curso
         shared_ptr<Estudiante> student = make_shared<Estudiante>(student_fullname, id);
         course.add_student(student);
         cout << "El alumno " << student_fullname<< " ha sido inscripto correctamente." << endl;
-
         //Ingreso de las calificaciones
         int n = grades();
         for (int i = 0; i < n; i ++){
@@ -64,7 +68,6 @@ void handle_adding_student(Curso& course){
             student->add_grade(grade);
         }
     }
- 
 }
 
 //Función para eliminar un estudiante del curso
